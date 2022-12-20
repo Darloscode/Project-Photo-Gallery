@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
-public class Fotografia {
+public class Fotografia{    
     private String descripcion ; 
     private String lugar; 
     private String fecha ; 
@@ -22,6 +22,18 @@ public class Fotografia {
         this.fecha = fecha;
         this.personas = personas;
         this.album = album; 
+    }
+    
+    public String getDescripcion(){
+        return descripcion;
+    }
+    
+    public String getLugar(){
+        return lugar;
+    }
+    
+    public String getFecha(){
+        return fecha;
     }
     
     public void añadirPersona (Persona p){
@@ -42,7 +54,7 @@ public class Fotografia {
       return byteImg;
     } 
     
-    public String guardarImagen (File archivo, byte[]byteImg){
+    public String guardarImagen(File archivo, byte[]byteImg){
         String respuesta = null; 
         try{
             FileOutputStream salida =new FileOutputStream(archivo);

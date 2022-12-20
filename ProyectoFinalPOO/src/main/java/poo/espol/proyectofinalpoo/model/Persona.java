@@ -2,23 +2,17 @@ package poo.espol.proyectofinalpoo.model;
 
 import java.util.ArrayList;
 
-public class Persona {
-    private String cedula;
+public class Persona {    
     private String nombre;
     private String apellido;
     private int edad; 
        
-    public Persona(String cedula, String nombre, String apellido, int edad){
-        this.cedula = cedula;
+    public Persona(String nombre, String apellido, int edad){        
         this.nombre = nombre; 
         this.apellido = apellido;
         this.edad = edad;
     }
-        
-    public String getCedula() {
-        return cedula;
-    }
-
+    
     public String getNombre() {
         return nombre;
     }
@@ -33,6 +27,6 @@ public class Persona {
 
     @Override
     public String toString() {        
-        return "Persona: " + "\nCedula : " + cedula + "\nNombre : " + nombre + "\nApellido : "+ apellido + "\nEdad : " + edad;
+        return "Persona: " + "\nCedula : "  + nombre + "\nApellido : "+ apellido + "\nEdad : " + edad;
     }    
 }
