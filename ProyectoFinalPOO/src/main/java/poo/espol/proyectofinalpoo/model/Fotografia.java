@@ -4,45 +4,53 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Fotografia{    
-    private String descripcion ; 
-    private String lugar; 
-    private String fecha ; 
-    private  ArrayList<Persona> personas;
+public class Fotografia extends Imagen implements Serializable, Comparable<Fotografia>{    
     private Album album;
     
-    public Fotografia(String descripcion, String lugar ,String fecha ,ArrayList<Persona> personas, Album album){
-        this(lugar, fecha, personas, album);
-        this.descripcion = descripcion;        
+    public Fotografia(String descripcion, String lugar ,String fecha ,ArrayList<Persona> personas){
+      super(descripcion, lugar, fecha, personas);      
     }
     
-    public Fotografia(String lugar ,String fecha ,ArrayList<Persona> personas, Album album){
-        this.lugar = lugar;
-        this.fecha = fecha;
-        this.personas = personas;
-        this.album = album; 
+    public Fotografia(String lugar ,String fecha ,ArrayList<Persona> personas){
+        super(lugar, fecha, personas);        
     }
-    
-    public String getDescripcion(){
-        return descripcion;
+
+    public Album getAlbum(){
+      return album;
     }
-    
-    public String getLugar(){
-        return lugar;
+  
+    public void agregarPersona (Persona p){
+      super.agregarPersona(p);
+      System.out.println("Se añadió una persona a la fotografia");
     }
-    
-    public String getFecha(){
-        return fecha;
+
+    public void mostrarLugares(){
+      
     }
-    
-    public void añadirPersona (Persona p){
-        personas.add(p);
+
+    public void mostrarPersonas(){
+      
     }
-    
-    public  void añadirInformacion(){        
+
+    public int compareTo(Fotografia ft){      
+      return 0;
+    } 
+
+    public void agregarInformacion(){
+      //Se agreagará informacion o modificará segun lo indicado en la ejecucion del programa    
     }
-    
+
+    public void moverFotografia(Album al){
+      
+    }
+  
+    //Muestra la informacion de la fotografía
+    public String toString(){
+      return "Descripcion: "+getDescripcion()+"\nLugar: "+getLugar()+"\nFecha: "+getFecha();
+    }
+  
     public byte[] abrirImagen ( File archivo){
         byte[] byteImg= new byte[1024*100];
         try{

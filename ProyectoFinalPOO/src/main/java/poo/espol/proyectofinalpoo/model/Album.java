@@ -1,38 +1,62 @@
 package poo.espol.proyectofinalpoo.model;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Album {
+public class Album extends Imagen implements Serializable, Comparable<Album>{
     private ArrayList<Fotografia> fotografias;
-    private String nombre; 
-    private String descripcion; 
-    private String fecha; 
-    private String lugar; 
-    private ArrayList<Persona> personas;
+    private String nombre;         
     
-    public Album(String nombre, String descripcion, String fecha, String lugar, ArrayList<Persona>personas){
-        this.descripcion = descripcion;
-        this.fecha = fecha ;         
-        this.lugar = lugar ; 
-        this.nombre = nombre ;
-        this.personas = personas;
+    public Album(String nombre, String descripcion, String fecha, String lugar, ArrayList<Persona>personas){      
+      super(descripcion, lugar, fecha, personas); 
+      this.nombre = nombre;
+        
     }
     
-    public Album(ArrayList<Fotografia> fotografias, String nombre, String descripcion, String fecha, String lugar, ArrayList<Persona>personas){
-        this(nombre, descripcion, fecha, lugar, personas);
+    public Album(String nombre, String descripcion, String fecha, String lugar, ArrayList<Persona>personas, ArrayList<Fotografia> fotografias){
+        super(descripcion, lugar, fecha, personas);
+        this.nombre = nombre;
         this.fotografias = fotografias;
     }
-    
-    public void añadirFoto( Fotografia foto ){        
+
+    public String getNombre(){
+      return nombre;
+    }
+  
+    public void agreagrFoto( Fotografia foto ){
+      fotografias.add(foto);
     }
     
-    public void añadirPersona( Persona p ){        
+    public void agregarPersona( Persona p ){
+      super.agregarPersona(p);
+      System.out.println("Se añadió una persona al album");
+    }
+
+    public void mostrarLugares(){
+      
+    }
+
+    public void mostrarPersonas(){
+      
     }
     
-    public void activarSlideshow(){        
+    public void activarSlideshow(){
+      //Se activará modo Slideshow
     }
     
-    public void mostrarFotos(){        
+    public void mostrarFotos(){
+      for(Fotografia ft : fotografias){
+        //Se motrará cada foto        
+      }
     }
+
+    //Muestra la informacion del album
+    public String toString(){
+      return "Nombre: "+nombre+"\nLugar: "+getLugar()+"Fecha: "+getFecha();
+    }
+
+    public int compareTo(Album al){      
+      return 0;
+    } 
     
 }

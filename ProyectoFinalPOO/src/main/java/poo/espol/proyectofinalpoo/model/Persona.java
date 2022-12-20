@@ -28,5 +28,5 @@ public class Persona {
     @Override
     public String toString() {        
         return "Persona: " + "\nCedula : "  + nombre + "\nApellido : "+ apellido + "\nEdad : " + edad;
-    }    
+    }  
 }
