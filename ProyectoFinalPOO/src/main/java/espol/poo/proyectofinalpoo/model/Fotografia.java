@@ -67,7 +67,7 @@ public class Fotografia extends Imagen implements Serializable, Comparable<Fotog
         try{
             FileOutputStream salida =new FileOutputStream(archivo);
             salida.write(byteImg);
-            respuesta = "la imagen ha sido guardada conexito";
+            respuesta = "la imagen ha sido guardada con exito";
         }catch (Exception e){
             
         }

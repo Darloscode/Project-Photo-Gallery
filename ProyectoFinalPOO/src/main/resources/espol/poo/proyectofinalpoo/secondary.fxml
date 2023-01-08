@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="510.0" maxWidth="715.0" minHeight="484.0" minWidth="715.0" prefHeight="502.0" prefWidth="715.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19">
+<ScrollPane maxHeight="510.0" maxWidth="715.0" minHeight="484.0" minWidth="715.0" prefHeight="502.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <content>
     <AnchorPane minHeight="482.0" minWidth="706.0" prefHeight="500.0" prefWidth="713.0">
          <children>
@@ -47,7 +47,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                      <children>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="113.0" text="Descipción:" />
+                        <Label fx:id="txtDescipcion" alignment="CENTER" prefHeight="17.0" prefWidth="113.0" text="Descipción:" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="115.0" text="Lugar:" GridPane.rowIndex="1" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="112.0" text="Fecha:" GridPane.rowIndex="2" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="115.0" text="Álbum:" GridPane.rowIndex="3" />
