@@ -27,16 +27,11 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Crear carpeta" />
+                  <MenuItem fx:id="menuAlbum" mnemonicParsing="false" text="Crear albúm" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <Menu mnemonicParsing="false" text="Import">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text=".PNG" />
-                        <MenuItem mnemonicParsing="false" text=".JPG" />
-                     </items>
-                  </Menu>
+                  <MenuItem fx:id="menuImport" mnemonicParsing="false" text="Import" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Cerrar" />
+                  <MenuItem mnemonicParsing="false" text="Cerrar" onAction="" />
                </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -150,7 +145,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <ImageView fitHeight="121.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imgView1" fitHeight="121.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fitHeight="121.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
                               <ImageView fitHeight="121.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                               <ImageView fitHeight="121.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />

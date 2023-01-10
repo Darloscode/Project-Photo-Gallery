@@ -1,5 +1,6 @@
 package espol.poo.proyectofinalpoo;
 
+import espol.poo.proyectofinalpoo.model.Galeria;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,16 +14,21 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    private static Scene scene;
+    private static Scene scene;    
+    public static Galeria galeria = new Galeria();
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("primary"));
         stage.setScene(scene);
-        stage.show();
+        stage.show();        
+    }       
+    
+    @Override
+    public void stop()throws IOException{
     }
 
-    static void setRoot(String fxml) throws IOException {
+    static void setRoot(String fxml) throws IOException {        
         scene.setRoot(loadFXML(fxml));
     }
 
@@ -32,7 +38,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        launch();        
     }
 
 }

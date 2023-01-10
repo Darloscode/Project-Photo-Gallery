@@ -1,42 +1,33 @@
-package poo.espol.proyectofinalpoo.model;
+package espol.poo.proyectofinalpoo.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Galeria implements Serializable, Comparable<Galeria>{
     
-    private ArrayList<Album> albunes ; 
-    private ArrayList<Fotografia> fotos;
-
-
-    public Galeria(ArrayList<Album> al){
-      this.albunes = al;    
-    }
-
-    public Galeria(ArrayList<Album> al, ArrayList<Fotografia> fts){
-      this(al);
-      this.fotos = fts;
-    }
+    private ArrayList<Album> albunes = new ArrayList<>(); 
+    //private ArrayList<Fotografia> fotos;
+   
 
     public ArrayList<Album> getAlbunes(){
       return albunes;
     }
-
+/*
     public ArrayList<Fotografia> getFotografias(){
       return fotos;
     }
-  
+  */
     public void mostrarAlbunes(){
         for(Album ft : albunes){
-          //Se mostrará cada album
+            System.out.println(ft.toString());
         }
     }
     public void agregarAlbum(Album al){
-      
+        albunes.add(al);        
     }
-
+/*
     public void agregarFoto(Fotografia ft){
-      
+        fotos.add(ft);
     }
   
     public void mostrarFotos(){
@@ -58,7 +49,7 @@ public class Galeria implements Serializable, Comparable<Galeria>{
           //Se motrará una lista ordenada de todos las personas que aparecen
         }
     }
-  
+  */
     public int compareTo(Galeria ft){      
       return 0;
     } 

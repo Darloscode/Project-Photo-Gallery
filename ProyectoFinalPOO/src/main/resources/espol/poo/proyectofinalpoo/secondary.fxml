@@ -51,10 +51,10 @@
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="115.0" text="Lugar:" GridPane.rowIndex="1" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="112.0" text="Fecha:" GridPane.rowIndex="2" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="115.0" text="Álbum:" GridPane.rowIndex="3" />
-                        <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextArea fx:id="textDescrip" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="textLugar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <ComboBox prefHeight="25.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <Separator prefWidth="715.0" />

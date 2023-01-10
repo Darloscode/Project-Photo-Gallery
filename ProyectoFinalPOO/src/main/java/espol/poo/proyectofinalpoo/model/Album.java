@@ -1,28 +1,17 @@
-package poo.espol.proyectofinalpoo.model;
+package espol.poo.proyectofinalpoo.model;
 
 import java.util.ArrayList;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class Album extends Imagen implements Serializable, Comparable<Album>{
-    private ArrayList<Fotografia> fotografias;
-    private String nombre;         
     
-    public Album(String nombre, String descripcion, String fecha, String lugar, ArrayList<Persona>personas){      
-      super(descripcion, lugar, fecha, personas); 
-      this.nombre = nombre;
-        
-    }
+    private ArrayList<Fotografia> fotografias;    
     
-    public Album(String nombre, String descripcion, String fecha, String lugar, ArrayList<Persona>personas, ArrayList<Fotografia> fotografias){
-        super(descripcion, lugar, fecha, personas);
-        this.nombre = nombre;
-        this.fotografias = fotografias;
+    public Album(String nombre, String descripcion, LocalDate fecha){
+        super(nombre, descripcion, fecha);               
     }
-
-    public String getNombre(){
-      return nombre;
-    }
-  
+          
     public void agreagrFoto( Fotografia foto ){
       fotografias.add(foto);
     }
@@ -52,7 +41,7 @@ public class Album extends Imagen implements Serializable, Comparable<Album>{
 
     //Muestra la informacion del album
     public String toString(){
-      return "Nombre: "+nombre+"\nLugar: "+getLugar()+"Fecha: "+getFecha();
+      return "Nombre del Álbum: "+super.getNombre()+"\nDescripción: "+super.getDescripcion()+"Fecha de creación: "+super.getFecha();
     }
 
     public int compareTo(Album al){      

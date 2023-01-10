@@ -1,32 +1,34 @@
-package poo.espol.proyectofinalpoo.model;
+package espol.poo.proyectofinalpoo.model;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public abstract class Imagen {
-    private String descripcion;
-    private String lugar;
-    private String fecha;
+    
+    private String nombre;
+    private String descripcion;    
+    private LocalDate fecha;
     private ArrayList<Persona> personas;
-
-    public Imagen(String descripcion, String lugar ,String fecha ,ArrayList<Persona> personas){
-        this(lugar, fecha, personas);
-        this.descripcion = descripcion;    
-    }
-
-    public Imagen(String lugar ,String fecha ,ArrayList<Persona> personas){
-        this.lugar = lugar;
+    
+    public Imagen(String nombre, String descripcion, LocalDate fecha){
+        this.nombre = nombre;
+        this.descripcion = descripcion;
         this.fecha = fecha;
-        this.personas = personas;    
     }
 
+    public Imagen(String nombre, String descripcion, LocalDate fecha, ArrayList<Persona> personas){
+        this(nombre, descripcion, fecha);        
+        this.personas = personas;
+    }
+
+    public String getNombre(){
+        return nombre;
+    }
+    
     public String getDescripcion(){
         return descripcion;
     }
-    
-    public String getLugar(){
-        return lugar;
-    }
-    
-    public String getFecha(){
+            
+    public LocalDate getFecha(){
         return fecha;
     }
 

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="510.0" maxWidth="715.0" minHeight="391.0" minWidth="715.0" prefHeight="394.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="510.0" maxWidth="715.0" minHeight="391.0" minWidth="715.0" prefHeight="394.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.poo.proyectofinalpoo.AlbumController">
    <content>
       <AnchorPane minHeight="391.0" minWidth="706.0" prefHeight="391.0" prefWidth="713.0">
          <children>
@@ -45,9 +45,9 @@
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="113.0" text="Descipción:" GridPane.rowIndex="1" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="115.0" text="Nombre:" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="112.0" text="Fecha:" GridPane.rowIndex="2" />
-                        <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField GridPane.columnIndex="1" />
-                        <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextArea fx:id="textDescrip" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="textNombre" GridPane.columnIndex="1" />
+                        <DatePicker fx:id="dtFecha" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <Separator prefWidth="715.0">
@@ -60,8 +60,8 @@
                   </Separator>
                   <HBox alignment="CENTER" prefHeight="52.0" prefWidth="200.0" spacing="30.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Guardar" />
-                        <Button mnemonicParsing="false" text="Cancelar" />
+                        <Button fx:id="guardarAlbum" mnemonicParsing="false" onAction="#crearAlbum" text="Guardar" />
+                        <Button mnemonicParsing="false" onAction="#cancelarCrearAlbum" text="Cancelar" />
                      </children>
                   </HBox>
                </children>

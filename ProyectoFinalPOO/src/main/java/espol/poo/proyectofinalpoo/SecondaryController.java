@@ -18,22 +18,22 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import poo.espol.proyectofinalpoo.model.Fotografia;
 
-public class SecondaryController implements Initializable, Serializable {
+
+public class SecondaryController{
 
     @FXML
     private void switchToPrimary() throws IOException {
         App.setRoot("primary");
     }
     
-     @FXML
+    @FXML
     private ImageView imageview;
     @FXML
     private ImageView imageupload ;
     
     @FXML 
-     Image imagen ; 
+    Image imagen ; 
     
     @FXML
     private Button cargarImagen; //Abre la imagen
@@ -43,9 +43,7 @@ public class SecondaryController implements Initializable, Serializable {
   
     private VBox contenedorV ;
     @FXML
-    private HBox contenedorH; 
-    @FXML
-    private Fotografia foto;
+    private HBox contenedorH;        
     
     @FXML
     private Button mostrarImagen; 
@@ -58,16 +56,20 @@ public class SecondaryController implements Initializable, Serializable {
     byte[] byteImg= new byte[1024*100];*/
     
     HBox contenedor= new HBox(1.0);
+  
     @FXML 
     /**
      * Initializes the controller class.
      */
+    
+     /*
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    @FXML
+    */
+    
+    
     private void handlebtncargarImagen(ActionEvent event) {
          File fil = archivo.showOpenDialog(null); //muestra un nuevo dialogo de arvhivo
         if(fil != null){
