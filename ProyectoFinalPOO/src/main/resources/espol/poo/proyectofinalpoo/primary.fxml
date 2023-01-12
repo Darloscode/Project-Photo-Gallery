@@ -31,12 +31,12 @@
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="menuImport" mnemonicParsing="false" text="Import" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Cerrar" onAction="" />
+                  <MenuItem fx:id="menuCerrar" mnemonicParsing="false" text="Cerrar" />
                </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
                <items>
-                  <MenuItem mnemonicParsing="false" text="About My Proyect" />
+                  <MenuItem fx:id="menuAbout" mnemonicParsing="false" text="About My Proyect" />
                </items>
           </Menu>
         </menus>

@@ -1,8 +1,9 @@
 package espol.poo.proyectofinalpoo.model;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public abstract class Imagen {
+public abstract class Imagen implements Serializable {
     
     private String nombre;
     private String descripcion;    

@@ -60,8 +60,8 @@
                   </Separator>
                   <HBox alignment="CENTER" prefHeight="52.0" prefWidth="200.0" spacing="30.0">
                      <children>
-                        <Button fx:id="guardarAlbum" mnemonicParsing="false" onAction="#crearAlbum" text="Guardar" />
-                        <Button mnemonicParsing="false" onAction="#cancelarCrearAlbum" text="Cancelar" />
+                        <Button fx:id="guardarAlbumNuevo" mnemonicParsing="false" text="Guardar" />
+                        <Button fx:id="cerrarCrearAlbum" mnemonicParsing="false"  text="Cancelar" />
                      </children>
                   </HBox>
                </children>

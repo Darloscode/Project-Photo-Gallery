@@ -1,14 +1,22 @@
 package espol.poo.proyectofinalpoo;
 
+import espol.poo.proyectofinalpoo.model.Album;
+import espol.poo.proyectofinalpoo.model.Galeria;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Menu;
@@ -35,6 +43,10 @@ public class PrimaryController implements Initializable{
     private DatePicker dtFecha;
     @FXML
     private MenuItem menuAlbum;
+    @FXML
+    private MenuItem menuCerrar;
+    @FXML
+    private MenuItem menuAbout;
     
     
     
@@ -67,21 +79,44 @@ public class PrimaryController implements Initializable{
             */
         });
         
-        menuAlbum.setOnAction(event ->{
-            try{
-                App.setRoot("tertiary");
-            }catch(IOException e){
-                e.printStackTrace();
-            }            
+        menuAlbum.setOnAction(event -> {
+            try {
+                AlbumController.nuevaVentana();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         });
         
+        menuCerrar.setOnAction(event -> {
+            //App.almacenarData();//SACALO
+            Platform.exit();        
+        });
         
+        menuAbout.setOnAction(event -> {            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);        
+            alert.setTitle("Información del Proyecto");
+            alert.setHeaderText("Creadores");
+            alert.setContentText("Carlos Flores González\nAaron Macias Catagua\nCristhian Rodriguez Villegas\n");
+            alert.showAndWait();
+        });  
+        
+        try{
+            ObjectInputStream oit= new ObjectInputStream(new FileInputStream("data.ser"));                                    
+            App.galeria = (Galeria) oit.readObject();
+            /*
+            for(Album s : App.galeria.getAlbunes()){
+                System.out.println(s.toString());
+            }*/
+            oit.close();
+        }catch(Exception e){
+            System.out.println("error");
+        }
     }
     
     public void cerrarGaleria()throws IOException{        
     }
     
-    
+
     
     /*
     private void agregarDetalles() throws IOException{

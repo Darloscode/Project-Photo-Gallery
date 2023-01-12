@@ -6,16 +6,17 @@ import java.time.LocalDate;
 
 public class Album extends Imagen implements Serializable, Comparable<Album>{
     
-    private ArrayList<Fotografia> fotografias;    
+    //private ArrayList<Fotografia> fotografias;    
     
     public Album(String nombre, String descripcion, LocalDate fecha){
         super(nombre, descripcion, fecha);               
     }
-          
+      
+/*    
     public void agreagrFoto( Fotografia foto ){
       fotografias.add(foto);
     }
-    
+    */
     public void agregarPersona( Persona p ){
       super.agregarPersona(p);
       System.out.println("Se añadió una persona al album");
@@ -32,12 +33,12 @@ public class Album extends Imagen implements Serializable, Comparable<Album>{
     public void activarSlideshow(){
       //Se activará modo Slideshow
     }
-    
+    /*
     public void mostrarFotos(){
       for(Fotografia ft : fotografias){
         //Se motrará cada foto        
       }
-    }
+    }*/
 
     //Muestra la informacion del album
     public String toString(){
