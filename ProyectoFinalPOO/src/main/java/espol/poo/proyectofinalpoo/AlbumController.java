@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -51,20 +52,21 @@ public class AlbumController implements Initializable {
             LocalDate date = dtFecha.getValue();
             dtFecha.setEditable(false);
         
-            if((!nombreAlbum.equals("")) & (!descripcionAlbum.equals("")) & (date != null)){            
-                App.galeria.agregarAlbum(new Album(nombreAlbum, descripcionAlbum, date));                                                                              
+            if((!nombreAlbum.equals("")) & (!descripcionAlbum.equals("")) & (date != null)){                       
+                App.galeria.agregarAlbum(new Album(nombreAlbum, descripcionAlbum, date));                
                 Node source = (Node) event.getSource();     //Me devuelve el elemento al que hice click
-                Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento
-                stage.close();
-                mostrarMensaje(Alert.AlertType.INFORMATION,"Ha creado el álbum con éxito");
+                Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento                
+                stage.close();                
+                mostrarMensaje(Alert.AlertType.INFORMATION,"Ha creado el álbum con éxito");              
             }else{
                 mostrarMensaje(Alert.AlertType.WARNING,"Llene todos los campos");
                 textNombre.clear();
                 textDescrip.clear();                
-            }            
+            }             
         });
         
     }
+    
     
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));

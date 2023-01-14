@@ -5,22 +5,58 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.io.Serializable;
+import java.time.LocalDate;
+import javafx.scene.image.Image;
 
-public class Fotografia  implements Serializable, Comparable<Fotografia>{    
+
+public class Fotografia extends Imagen implements Serializable, Comparable<Fotografia>{    
     private Album album;
+    private String lugar;
+    private String imagen;
+    private String nombre;
+ 
     
-    /*
-    public Fotografia(String descripcion, String lugar ,String fecha ,ArrayList<Persona> personas){
-      super(descripcion, lugar, fecha, personas);      
+    public Fotografia(String descripcion, String lugar , LocalDate fecha, Album album, String imagen){
+      super(descripcion, fecha);
+      this.lugar = lugar;
+      this.album = album;
+      this.imagen = imagen;
     }
     
+    public Fotografia(String descripcion, String lugar , LocalDate fecha, Album album, String imagen, ArrayList<Persona> personas){
+      super(descripcion, fecha, personas);
+      this.lugar = lugar;
+      this.album = album;
+      this.imagen = imagen;
+    }
+    
+    public Image obtenerFoto(){
+        Image image = null;
+        try{
+            FileInputStream input = new FileInputStream("icono.png");
+            image = new Image(input, 50, 50, false, false);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return image;
+    }
+    
+    public Album getAlbum(){
+        return album;
+    }
+    
+    public String getLugar(){
+        return lugar;
+    }
+    /*
     public Fotografia(String lugar ,String fecha ,ArrayList<Persona> personas){
         super(lugar, fecha, personas);        
     }
-    */
+    
+    
     public Album getAlbum(){
       return album;
-    }
+    }*/
   
     public void agregarPersona (Persona p){
       //super.agregarPersona(p);
@@ -51,7 +87,7 @@ public class Fotografia  implements Serializable, Comparable<Fotografia>{
     public String toString(){
       return "Descripcion: "+getDescripcion()+"\nLugar: "+getLugar()+"\nFecha: "+getFecha();
     }
-  */
+  
     public byte[] abrirImagen ( File archivo){
         byte[] byteImg= new byte[1024*100];
         try{
@@ -73,5 +109,5 @@ public class Fotografia  implements Serializable, Comparable<Fotografia>{
             
         }
          return respuesta; 
-    } 
+    } */
 }

@@ -6,11 +6,29 @@ import java.time.LocalDate;
 
 public class Album extends Imagen implements Serializable, Comparable<Album>{
     
-    //private ArrayList<Fotografia> fotografias;    
-    
-    public Album(String nombre, String descripcion, LocalDate fecha){
-        super(nombre, descripcion, fecha);               
+    private String nombre;
+    private ArrayList<Fotografia> fotografias ;    
+    public String getNombre(){
+        return nombre;
     }
+    public Album(String nombre, String descripcion, LocalDate fecha){
+        super(descripcion, fecha);
+        this.nombre = nombre;
+        this.fotografias = new ArrayList<>();
+    }
+    
+    public void setFotografias(Fotografia fotografia){
+        this.fotografias = fotografias;
+    }
+    
+    public ArrayList<Fotografia> getFotografias(){
+        return fotografias;
+    }
+    
+    public void agregarFoto(Fotografia ft){
+        fotografias.add(ft);
+    }
+    
       
 /*    
     public void agreagrFoto( Fotografia foto ){
@@ -42,7 +60,7 @@ public class Album extends Imagen implements Serializable, Comparable<Album>{
 
     //Muestra la informacion del album
     public String toString(){
-      return "Nombre del Álbum: "+super.getNombre()+"\nDescripción: "+super.getDescripcion()+"Fecha de creación: "+super.getFecha();
+      return "Nombre del Álbum: "+getNombre()+"\nDescripción: "+super.getDescripcion()+"Fecha de creación: "+super.getFecha();
     }
 
     public int compareTo(Album al){      
