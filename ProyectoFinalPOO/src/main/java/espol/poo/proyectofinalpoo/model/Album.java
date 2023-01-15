@@ -17,6 +17,10 @@ public class Album extends Imagen implements Serializable, Comparable<Album>{
         this.fotografias = new ArrayList<>();
     }
     
+    public void setNombre(String n){
+        this.nombre = n;
+    }
+    
     public void setFotografias(Fotografia fotografia){
         this.fotografias = fotografias;
     }

@@ -3,6 +3,7 @@ package espol.poo.proyectofinalpoo;
 import espol.poo.proyectofinalpoo.model.Album;
 import espol.poo.proyectofinalpoo.model.Fotografia;
 import espol.poo.proyectofinalpoo.model.Galeria;
+import espol.poo.proyectofinalpoo.model.Persona;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -30,7 +31,7 @@ public class App extends Application {
     public static Galeria galeria = new Galeria();      
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException {        
         scene = new Scene(loadFXML("primary"));                      
 
         stage.setOnCloseRequest((WindowEvent event) -> {

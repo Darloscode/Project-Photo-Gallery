@@ -168,7 +168,7 @@
             </ScrollPane>
             <ScrollPane layoutX="10.0" layoutY="10.0" maxWidth="200.0" minWidth="120.0" prefHeight="-1.0" prefWidth="-1.0">
                <content>
-                  <VBox fillWidth="false" prefHeight="571.0" prefWidth="199.0">
+                  <VBox fx:id="detalles" alignment="TOP_CENTER" fillWidth="false" prefHeight="571.0" prefWidth="199.0">
                      <children>
                         <Label alignment="CENTER" style="&#10;" text="Detalles" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
                            <font>
@@ -178,10 +178,10 @@
                               <Insets top="17.0" />
                            </VBox.margin>
                         </Label>
-                        <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="191.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="191.0">
                            <children>
                               <Label text="Descripción:" />
-                              <Text fx:id="mostrarDescripFoto" strokeType="OUTSIDE" strokeWidth="0.0" text="..................">
+                              <Text fx:id="mostrarDescripFoto" strokeType="OUTSIDE" strokeWidth="0.0" text=".................." wrappingWidth="109.828125">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin></Text>
@@ -227,7 +227,7 @@
                               <Insets left="8.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="191.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="191.0">
                            <children>
                               <Label text="Personas:" />
                               <VBox fx:id="mostrarPersonasFoto" prefHeight="27.0" prefWidth="94.0">
@@ -240,6 +240,7 @@
                               <Insets left="8.0" />
                            </VBox.margin>
                         </HBox>
+                        <Label fx:id="labelVacio" />
                         <Label alignment="CENTER" style="&#10;" text="Detalles del Album" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
                            <font>
                               <Font size="18.0" fx:id="x1111" />
@@ -260,8 +261,8 @@
                            <children>
                               <Label text="Nombre:" />
                               <Label text="Descripción:" GridPane.rowIndex="1" />
-                              <Label fx:id="mostrarNombreAlbum" text="............" GridPane.columnIndex="1" />
-                              <Label fx:id="mostrarDescripAlbum" layoutX="100.0" layoutY="24.0" text="............" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="mostrarNombreAlbum" prefHeight="17.0" prefWidth="98.0" text="............" GridPane.columnIndex="1" />
+                              <Label fx:id="mostrarDescripAlbum" layoutX="100.0" layoutY="24.0" prefHeight="85.0" prefWidth="89.0" text="............" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                            <VBox.margin>
                               <Insets left="8.0" />

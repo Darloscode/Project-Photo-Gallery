@@ -86,7 +86,9 @@ public class PrimaryController implements Initializable {
     private Label mostrarFechaFoto;
     @FXML
     private VBox mostrarPersonasFoto;
-    
+    @FXML
+    private VBox detalles;
+    private Button editarFoto = null;
     /*
     public void cargarAlbunes(){
         for(Album al : App.galeria.getAlbunes()){
@@ -121,8 +123,16 @@ public class PrimaryController implements Initializable {
                 mostrarNombreAlbum.setText(nombre);
                 mostrarDescripAlbum.setText(al.getDescripcion());
                 mostrarNombreAl.setText(nombre);                
-                                
+                //detalles.getChildren().remove(editarFoto); ARREGLAR
                 
+                mostrarDescripFoto.setText("");
+                mostrarLugarFoto.setText("");
+                mostrarAlbumFoto.setText("");
+                mostrarFechaFoto.setText("");
+                mostrarPersonasFoto.getChildren().clear();
+                mostrarFotos.getChildren().clear();
+                
+                        
                 int a = al.getFotografias().size() % 3;
                 System.out.println(al.getFotografias().size());
                 System.out.println(a);
@@ -146,10 +156,13 @@ public class PrimaryController implements Initializable {
                                     System.out.println("Muestra"+cntPersonas);
                                     
                                     foto.setOnMouseClicked(ev -> {
+                                        mostrarPersonasFoto.getChildren().clear();
                                         mostrarDescripFoto.setText(descripFoto);
                                         mostrarLugarFoto.setText(lugarFoto);
                                         mostrarAlbumFoto.setText(albumFoto);
-                                        mostrarFechaFoto.setText(fechaFoto);                                        
+                                        mostrarFechaFoto.setText(fechaFoto); 
+                                        
+                                        
                                         if(personas.size()>0){
                                             for(Persona p : personas){
                                                 mostrarPersonasFoto.getChildren().add(new Label(p.getNombre()+p.getApellido()));
@@ -157,6 +170,16 @@ public class PrimaryController implements Initializable {
                                         }else{
                                             mostrarPersonasFoto.getChildren().clear();
                                         }
+                                        
+                                        editarFoto = new Button("Editar Foto");
+                                        
+                                        detalles.getChildren().set(6, editarFoto);
+                                        
+                                        editarFoto.setOnAction(eh -> {
+                                            System.out.println("EDITANDO");
+                                            
+                                        });
+                                        
                                     });
                                     b++;
                                 }catch(Exception e){
@@ -246,24 +269,30 @@ public class PrimaryController implements Initializable {
         }
         */
         menuImport.setOnAction(event -> {
-            FileChooser imgChooser = new FileChooser();
-            imgChooser.setTitle("Seleccionar Imagen");
-            
-            //Filtro para buscar solo imagenes .PNG
-            imgChooser.getExtensionFilters().addAll(                                       
-                    new FileChooser.ExtensionFilter("PNG", "*.png")
-            );
-            
-            //Recuperar la imagen seleccionada
-            File imagenFile = imgChooser.showOpenDialog(null);
-            Image img = new Image("file:" + imagenFile.getAbsolutePath());
-            /*
-            try{
+            try {
+                SecondaryController.nuevaVentana();
+                /*
+                FileChooser imgChooser = new FileChooser();
+                imgChooser.setTitle("Seleccionar Imagen");
+                
+                //Filtro para buscar solo imagenes .PNG
+                imgChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+                );
+                
+                //Recuperar la imagen seleccionada
+                File imagenFile = imgChooser.showOpenDialog(null);
+                Image img = new Image("file:" + imagenFile.getAbsolutePath());
+                
+                try{
                 agregarDetalles();
-            }catch(IOException e){
+                }catch(IOException e){
                 System.err.println("Error al mostrar Ventana de Información de Imgen");
+                }
+                */
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
-            */
         });
         
         menuAlbum.setOnAction(event -> {
@@ -275,7 +304,7 @@ public class PrimaryController implements Initializable {
         });
         
         menuCerrar.setOnAction(event -> {
-            //App.almacenarData();//SACALO
+            App.almacenarData();
             Platform.exit();        
         });
         

@@ -33,8 +33,8 @@ public class Fotografia extends Imagen implements Serializable, Comparable<Fotog
     public Image obtenerFoto(){
         Image image = null;
         try{
-            FileInputStream input = new FileInputStream("icono.png");
-            image = new Image(input, 50, 50, false, false);
+            FileInputStream input = new FileInputStream(imagen);
+            image = new Image(input, 100, 100, false, false);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -57,6 +57,10 @@ public class Fotografia extends Imagen implements Serializable, Comparable<Fotog
     public Album getAlbum(){
       return album;
     }*/
+    
+    public String toString(){
+        return super.getDescripcion()+"---"+getLugar()+"----"+album.getNombre();
+    }
   
     public void agregarPersona (Persona p){
       //super.agregarPersona(p);
