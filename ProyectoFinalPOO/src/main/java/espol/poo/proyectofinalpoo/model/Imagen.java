@@ -18,7 +18,11 @@ public abstract class Imagen implements Serializable {
         this(descripcion, fecha);        
         this.personas = personas;
     }
-        
+    
+    public void setDescripcion(String descripcion){
+        this.descripcion = descripcion;
+    }
+    
     public String getDescripcion(){
         return descripcion;
     }

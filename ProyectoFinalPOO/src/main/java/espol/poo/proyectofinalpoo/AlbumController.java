@@ -37,9 +37,9 @@ public class AlbumController implements Initializable {
         
     private static Scene scene;    
     
+    
     @Override
-    public void initialize(URL url, ResourceBundle rb){
-        
+    public void initialize(URL url, ResourceBundle rb){        
         cerrarCrearAlbum.setOnAction(event -> {
             Node source = (Node) event.getSource();     //Me devuelve el elemento al que hice click
             Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento
@@ -57,17 +57,13 @@ public class AlbumController implements Initializable {
                 Node source = (Node) event.getSource();     //Me devuelve el elemento al que hice click
                 Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento                
                 stage.close();                
-                mostrarMensaje(Alert.AlertType.INFORMATION,"Ha creado el álbum con éxito");              
+                App.mostrarMensaje(Alert.AlertType.INFORMATION, "Advertencia", "Información del Album", "Ha creado el álbum con éxito");
             }else{
-                mostrarMensaje(Alert.AlertType.WARNING,"Llene todos los campos");
-                textNombre.clear();
-                textDescrip.clear();                
+                App.mostrarMensaje(Alert.AlertType.WARNING, "Advertencia", "Información", "Llene todos los campos");                
             }             
-        });
-        
+        });        
     }
-    
-    
+        
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
@@ -79,18 +75,5 @@ public class AlbumController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Crear Álbun Nuevo");
         stage.show();
-    }            
-    
-    @FXML
-    private void crearAlbum()throws IOException {                            
-        //System.out.println(date.toString());        
-    }
-        
-    public void mostrarMensaje(Alert.AlertType tipo, String mensaje) {
-        Alert alert = new Alert(tipo);        
-        alert.setTitle("Advertencia");
-        alert.setHeaderText("Información del Album");
-        alert.setContentText(mensaje);
-        alert.showAndWait();
-    }
+    }                  
 }

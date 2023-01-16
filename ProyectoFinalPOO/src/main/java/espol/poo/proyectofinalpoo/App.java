@@ -13,21 +13,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.WindowEvent;
 
 /**
  * JavaFX App
  */
+
 public class App extends Application {
 
-    private static Scene scene;    
+    public static Scene scene;    
     public static Galeria galeria = new Galeria();      
 
     @Override
@@ -43,10 +44,6 @@ public class App extends Application {
         stage.show(); 
 
     }       
-    
-    @Override
-    public void stop()throws IOException{
-    }
 
     static void setRoot(String fxml) throws IOException {        
         scene.setRoot(loadFXML(fxml));
@@ -84,6 +81,14 @@ public class App extends Application {
         }catch(Exception e){
             System.out.println("error");
         }
+    }
+    
+    public static void mostrarMensaje(Alert.AlertType tipo, String Titulo, String HeaderText, String mensaje) {
+        Alert alert = new Alert(tipo);        
+        alert.setTitle(Titulo);
+        alert.setHeaderText(HeaderText);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 
 }

@@ -38,8 +38,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-
-public class SecondaryController implements Initializable{
+public class SecondaryController implements Initializable{   
     
     @FXML
     private VBox vboxPersonas;
@@ -55,24 +54,22 @@ public class SecondaryController implements Initializable{
     private DatePicker txtFecha;
     @FXML
     private ComboBox Album;
+    @FXML
+    private ImageView imageview;
     
-    private String direccionImagen = null;
-    
-    
+    private String direccionImagen = null;        
     private static Scene scene;    
                         
       
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cargarDatos();
-        //añadirPersonas();                
+        cargarDatos();                       
         
         cancelarButton.setOnAction(event -> {
             Node source = (Node) event.getSource();     //Me devuelve el elemento al que hice click
             Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento
             stage.close();
-        });
-      
+        });      
     }
     
     private static Parent loadFXML(String fxml) throws IOException {
@@ -87,14 +84,6 @@ public class SecondaryController implements Initializable{
         stage.setTitle("Abrir nueva Fotografía");
         stage.show();
     }            
-
-    public void mostrarMensaje(Alert.AlertType tipo, String mensaje) {
-        Alert alert = new Alert(tipo);        
-        alert.setTitle("Advertencia");
-        alert.setHeaderText("Información de la Fotografía");
-        alert.setContentText(mensaje);
-        alert.showAndWait();
-    }
            
     private void cargarDatos(){        
         for(Album al : App.galeria.getAlbunes()){
@@ -125,7 +114,9 @@ public class SecondaryController implements Initializable{
         
         persona.getChildren().add(edad);
         persona.getChildren().add(eliminar);
-        vboxPersonas.getChildren().add(persona);                    
+        
+        vboxPersonas.getChildren().add(persona);  
+        
         eliminar.setOnAction(eve -> {                        
             vboxPersonas.getChildren().remove(persona);            
         });        
@@ -150,11 +141,9 @@ public class SecondaryController implements Initializable{
             imageview.setImage(img);                        
         }catch(Exception e){
             System.out.println("No se ha cargado ninguna imagen");
-        }
-        
+        }        
     }
-    
-    
+        
     @FXML
     private void guardarDatos(ActionEvent event){
         ArrayList<Persona> listaPersonas = new ArrayList<>();
@@ -183,18 +172,19 @@ public class SecondaryController implements Initializable{
                 Node edad = personas.getChildren().get(2);
                 ComboBox ed = (ComboBox) edad;
                 int edadPersona = (int) ed.getValue();
+                
                 if(edadPersona !=0 ){
                     Persona p1 = new Persona(nombrePersona, apellidoPersona, edadPersona);
                     listaPersonas.add(p1);
                 }else{
-                    mostrarMensaje(Alert.AlertType.WARNING,"Seleccione una edad válida para "+nombrePersona);
+                    App.mostrarMensaje(Alert.AlertType.WARNING, "Advertencia", "Informacón de la Fotografía", "Seleccione una edad válida para "+nombrePersona);
                 }            
             }
         
             Fotografia ft = null;
         
             if(listaPersonas.size()>0){
-                ft = new Fotografia(descripcion, lugar, fecha, App.galeria.getAlbunes().get(indice), direccionImagen, listaPersonas);
+                ft = new Fotografia(descripcion, lugar, fecha, App.galeria.getAlbunes().get(indice), direccionImagen, listaPersonas);                
                 System.out.println("TODO BIEN CON PESONAS");
             }else{
                 ft = new Fotografia(descripcion, lugar, fecha, App.galeria.getAlbunes().get(indice), direccionImagen);
@@ -202,18 +192,16 @@ public class SecondaryController implements Initializable{
             }
                         
             App.galeria.getAlbunes().get(indice).agregarFoto(ft);
-            System.out.println("HAS AGREGADO CON EXITO");    
-            
+            System.out.println("HAS AGREGADO CON EXITO");                
             Node source = (Node) event.getSource();     //Me devuelve el elemento al que hice click
             Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento
             stage.close();
-            
+            App.mostrarMensaje(Alert.AlertType.INFORMATION, "Información", "Información de la Fotografía", "Se ha subido su imagen correctamente");
         }else{
-            mostrarMensaje(Alert.AlertType.WARNING,"Llene todos los campos");                
-        }           
+            App.mostrarMensaje(Alert.AlertType.WARNING, "Advertencia", "Información de la Fotografía","Llene todos los campos");
+        }
     }
             
-
     private int encontrarAlbum(String nombre){
         for(Album al : App.galeria.getAlbunes()){
             if(al.getNombre().equals(nombre)){
@@ -222,118 +210,4 @@ public class SecondaryController implements Initializable{
         }
         return -1;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   
-    
-   
-    @FXML
-    private ImageView imageview; // MUESTRA LA IMAGEN EN SECONDARY
-    @FXML
-    private ImageView imageupload ;
-    
-    @FXML 
-     Image imagen ; 
-    
-    @FXML
-    private Button cargarImagen; //Abre la imag
-
-    private Button guardarImagen; // SECONDAR
-   
-    private HBox contenedorH; 
-    
-    //Usando las clases para secondary controller 
-    private Fotografia foto;
-    private Persona persona;
-    private Imagen imagenGeneral ; // Aqui esta la lista de personas 
-    
-    private Album alb ;
-    //String nombre, String descripcion, String fecha, String lugar, ArrayList<Persona>personas
-    private Galeria galeria; 
-
-    
-    private Button mostrarImagen; 
-    
- 
-    /* FileInputStream  entrada; 
-    FileOutputStream salida; 
-    ObjectOutputStream ObjectSalida ; 
-    File file  ; 
-    byte[] byteImg= new byte[1024*100];*/
-    
-   
-    // AÑADIR INFORMACION   ( SECUNDARY )
-   
-    
-    
-    // AÑADIR PERSONAS ( SECUNDARY )  
-    @FXML
-    private TextField txtNombre ;  private TextField txtApellido ;
-    private ComboBox Edad ;  private Button Añadir ;  private Button Guardar; private Button Cancelar ;
-    
-    
-   
-    
-    @FXML 
-    private ArrayList<String> Albunes;
-    
-    final FileChooser archivo = new FileChooser();
-   
-    
-    
-   
-    
-     @FXML
-    
-    
-    
-    
- 
- 
-    
-    
-    private void guardarImagen (ActionEvent event) throws ClassNotFoundException {
-      imageupload = new ImageView(); 
-    try{
-        //FileInputStream FileIn = new FileInputStream("Personas.ser");
-       // ObjectInputStream ObjectEntrada = new ObjectInputStream(FileIn); 
-        //contenedor = (HBox)ObjectEntrada.readObject();
-        
-            // castin de contenedor a imagen
-         
-        //Image imagen = new Image(imageview.getImage().getUrl());
-            // guardar imagen 
-            
-            FileWriter fi= new FileWriter("C:\\ProyectoFinalPOO\\src\\main\\java\\espol\\poo\\proyectofinalpoo\\galeria");
-            fi.write(imagen.toString());
-            
-        }catch (IOException e){
-            
-        e.printStackTrace();
-        
-        }
-  
-    }
-     
 }

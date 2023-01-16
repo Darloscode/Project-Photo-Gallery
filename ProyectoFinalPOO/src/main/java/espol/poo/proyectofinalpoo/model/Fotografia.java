@@ -60,12 +60,7 @@ public class Fotografia extends Imagen implements Serializable, Comparable<Fotog
     
     public String toString(){
         return super.getDescripcion()+"---"+getLugar()+"----"+album.getNombre();
-    }
-  
-    public void agregarPersona (Persona p){
-      //super.agregarPersona(p);
-      System.out.println("Se añadió una persona a la fotografia");
-    }
+    }     
 
     public void mostrarLugares(){
       

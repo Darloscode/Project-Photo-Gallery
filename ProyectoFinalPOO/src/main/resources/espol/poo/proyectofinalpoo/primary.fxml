@@ -50,6 +50,9 @@
                            <font>
                               <Font size="18.0" fx:id="x1" />
                            </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
                         </Label>
                         <ScrollPane prefHeight="193.0" prefWidth="178.0">
                            <content>
@@ -70,6 +73,9 @@
                            <VBox.margin>
                               <Insets bottom="10.0" top="15.0" />
                            </VBox.margin>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
                         </Label>
                         <ScrollPane prefHeight="291.0" prefWidth="176.0">
                            <content>
@@ -141,10 +147,16 @@
                <content>
                   <VBox fx:id="verFotos" fillWidth="false" prefHeight="569.0" prefWidth="504.0">
                      <children>
-                        <Label fx:id="mostrarNombreAl" alignment="CENTER" style="&#10;" text="Ninguna" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+                        <Label fx:id="mostrarNombreAl" alignment="CENTER" style="&#10;" text="Ningun Álbum seleccionado" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
                            <font>
                               <Font size="18.0" fx:id="x12" />
                            </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
                         </Label>
                         <GridPane fx:id="mostrarFotos" alignment="CENTER" prefWidth="504.0">
                            <columnConstraints>
@@ -268,6 +280,7 @@
                               <Insets left="8.0" />
                            </VBox.margin>
                         </GridPane>
+                        <Label fx:id="labelVacio2" />
                      </children>
                   </VBox>
                </content>

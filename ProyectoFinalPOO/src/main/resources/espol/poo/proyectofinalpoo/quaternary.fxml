@@ -6,8 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,98 +13,76 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="715.0" minWidth="715.0" prefHeight="400.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="-Infinity" maxWidth="715.0" minWidth="715.0" prefHeight="400.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.poo.proyectofinalpoo.ImagenController">
    <content>
-      <AnchorPane minHeight="397.0" minWidth="706.0" prefHeight="397.0" prefWidth="713.0">
+      <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="400.0" maxWidth="715.0" minHeight="398.0" minWidth="713.0" prefHeight="398.0" prefWidth="713.0" spacing="5.0">
          <children>
-            <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="400.0" maxWidth="715.0" minHeight="400.0" minWidth="715.0" prefHeight="400.0" prefWidth="715.0" spacing="5.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="715.0" text="Modificar información" textFill="#656363">
+               <font>
+                  <Font name="Cambria" size="40.0" />
+               </font>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </Label>
+            <Separator prefWidth="715.0" />
+            <GridPane alignment="BOTTOM_CENTER" prefHeight="58.0" prefWidth="273.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="110.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="163.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="715.0" text="Modificar información" textFill="#656363">
-                     <font>
-                        <Font name="Cambria" size="40.0" />
-                     </font>
-                     <padding>
-                        <Insets top="5.0" />
-                     </padding>
-                  </Label>
-                  <Separator prefWidth="715.0" />
-                  <GridPane alignment="BOTTOM_CENTER" prefHeight="58.0" prefWidth="273.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="110.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="163.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                     <children>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="115.0" text="Álbum:" />
-                        <ComboBox prefHeight="25.0" prefWidth="167.0" GridPane.columnIndex="1" />
-                     </children>
-                  </GridPane>
-                  <Separator prefWidth="715.0" />
-                  <Label text="Personas">
-                     <font>
-                        <Font name="Cambria" size="23.0" />
-                     </font>
-                  </Label>
-                  <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="715.0" spacing="155.0">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="64.0" text="Nombre" />
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="59.0" text="Apellido" />
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="32.0" text="Edad" />
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="120.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="190.0" prefHeight="26.0" prefWidth="715.0" spacing="155.0">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="64.0" text="..........." />
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="59.0" text="..........." />
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="32.0" text="..........." />
-                     </children>
-                     <padding>
-                        <Insets left="120.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="715.0" spacing="70.0">
-                     <children>
-                        <TextField />
-                        <TextField />
-                        <ComboBox prefHeight="25.0" prefWidth="104.0" />
-                     </children>
-                     <VBox.margin>
-                        <Insets left="80.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <Button mnemonicParsing="false" text="Añadir">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Separator prefWidth="715.0">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </Separator>
-                  <HBox alignment="CENTER" prefHeight="52.0" prefWidth="200.0" spacing="30.0">
-                     <children>
-                        <Button mnemonicParsing="false" text="Guardar" />
-                        <Button mnemonicParsing="false" text="Cancelar" />
-                     </children>
-                  </HBox>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="115.0" text="Álbum:" />
+                  <ComboBox fx:id="albumes" prefHeight="25.0" prefWidth="167.0" GridPane.columnIndex="1" />
                </children>
-            </VBox>
+            </GridPane>
+            <Separator prefWidth="715.0" />
+            <Label text="Personas">
+               <font>
+                  <Font name="Cambria" size="23.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="715.0" spacing="155.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="64.0" text="Nombre" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="59.0" text="Apellido" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="32.0" text="Edad" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="120.0" />
+               </padding>
+            </HBox>
+            <VBox fx:id="mostrarPersonas" prefHeight="45.0" prefWidth="567.0" />
+            <VBox fx:id="agregarPersonas" prefHeight="55.0" prefWidth="577.0" />
+            <Button fx:id="buttonAgregar" mnemonicParsing="false" text="Añadir" onAction="#agregarPersonas" >
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Separator prefWidth="715.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Separator>
+            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="200.0" spacing="30.0">
+               <children>
+                  <Button fx:id="botonGuardar" mnemonicParsing="false" text="Guardar" />
+                  <Button fx:id="botonCancelar" mnemonicParsing="false" text="Cancelar" />
+               </children>
+            </HBox>
          </children>
-      </AnchorPane>
+      </VBox>
    </content>
 </ScrollPane>

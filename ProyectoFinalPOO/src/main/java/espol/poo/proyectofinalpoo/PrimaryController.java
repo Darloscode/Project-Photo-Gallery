@@ -87,209 +87,45 @@ public class PrimaryController implements Initializable {
     @FXML
     private VBox mostrarPersonasFoto;
     @FXML
-    private VBox detalles;
-    private Button editarFoto = null;
-    /*
-    public void cargarAlbunes(){
-        for(Album al : App.galeria.getAlbunes()){
-            String nombre = al.getNombre();
-            HBox albumFotos = new HBox();
-            TitledPane tpane = new TitledPane(nombre, albumFotos);
-            if(!vboxAlbunes.getChildren().contains(tpane)){
-                vboxAlbunes.getChildren().add(tpane);
-            }
-        }
-    }*/
+    private VBox detalles;    
+    @FXML
+    private Label labelVacio;
+    @FXML
+    private Button editarFoto;    
+    @FXML
+    private Label labelVacio2;
     
+    private ImageView imageView;
     
-    public void cargarAlbunes() throws FileNotFoundException{            
-        for(Album al : App.galeria.getAlbunes()){                        
-            String nombre = al.getNombre();
-            
-            Label nombreAlbum = new Label("    "+nombre);
-            
-            FileInputStream input = new FileInputStream("icono.png");
-            Image image = new Image(input, 17, 17, false, false);
-            ImageView imageView = new ImageView(image);
-            
-            
-            HBox albumFotos = new HBox();
-            albumFotos.getChildren().add(imageView);
-            albumFotos.getChildren().add(nombreAlbum);
-            
-            
-            
-            nombreAlbum.setOnMouseClicked(event -> {
-                mostrarNombreAlbum.setText(nombre);
-                mostrarDescripAlbum.setText(al.getDescripcion());
-                mostrarNombreAl.setText(nombre);                
-                //detalles.getChildren().remove(editarFoto); ARREGLAR
-                
-                mostrarDescripFoto.setText("");
-                mostrarLugarFoto.setText("");
-                mostrarAlbumFoto.setText("");
-                mostrarFechaFoto.setText("");
-                mostrarPersonasFoto.getChildren().clear();
-                mostrarFotos.getChildren().clear();
-                
-                        
-                int a = al.getFotografias().size() % 3;
-                System.out.println(al.getFotografias().size());
-                System.out.println(a);
-                
-                if(a > 0){                                                      
-                    for(int i=0; i<a; i++){                        
-                        int c = i*3;
-                        int b = 0;
-                        for(int j=c; j<c+3; j++){
-                            if(j<al.getFotografias().size()){
-                                try{
-                                    Image img = al.getFotografias().get(j).obtenerFoto();
-                                    ImageView foto = new ImageView(img);
-                                    mostrarFotos.add(foto, b, i);
-                                    String descripFoto = al.getFotografias().get(j).getDescripcion();
-                                    String lugarFoto = al.getFotografias().get(j).getLugar();
-                                    String albumFoto = al.getFotografias().get(j).getAlbum().getNombre();
-                                    String fechaFoto = al.getFotografias().get(j).getFecha().toString();
-                                    int cntPersonas = al.getFotografias().get(j).getPersonas().size();
-                                    ArrayList<Persona> personas = al.getFotografias().get(j).getPersonas();
-                                    System.out.println("Muestra"+cntPersonas);
-                                    
-                                    foto.setOnMouseClicked(ev -> {
-                                        mostrarPersonasFoto.getChildren().clear();
-                                        mostrarDescripFoto.setText(descripFoto);
-                                        mostrarLugarFoto.setText(lugarFoto);
-                                        mostrarAlbumFoto.setText(albumFoto);
-                                        mostrarFechaFoto.setText(fechaFoto); 
-                                        
-                                        
-                                        if(personas.size()>0){
-                                            for(Persona p : personas){
-                                                mostrarPersonasFoto.getChildren().add(new Label(p.getNombre()+p.getApellido()));
-                                            }                                            
-                                        }else{
-                                            mostrarPersonasFoto.getChildren().clear();
-                                        }
-                                        
-                                        editarFoto = new Button("Editar Foto");
-                                        
-                                        detalles.getChildren().set(6, editarFoto);
-                                        
-                                        editarFoto.setOnAction(eh -> {
-                                            System.out.println("EDITANDO");
-                                            
-                                        });
-                                        
-                                    });
-                                    b++;
-                                }catch(Exception e){
-                                    System.out.println("Error");
-                                }
-                            }
-                            //mostrarFotos.add(new Label(Integer.toString(j)), b, i);                                                                                                                
-                        }                        
-                    }                                        
-                }else{
-                    mostrarFotos.getChildren().clear();                           
-                }               
-                
-                //mostrarFotos.setGridLinesVisible(true);                                
-                //METODO PARA CARGAR IMAGENES
-            });
-            vboxAlbunes.getChildren().add(albumFotos);                                   
-        }                 
-    }
+    private int indFotografia;
+    private int indAlbum;
+
     
     @Override
-    public void initialize(URL url, ResourceBundle rb){      
-       
+    public void initialize(URL url, ResourceBundle rb) {                          
         App.recuperarData();
-        Platform.runLater( ()-> { 
-            try {
-                cargarAlbunes();                
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            }
-        });
         
-        /*
-        if(App.galeria.getAlbunes().size()>0){            
-            Persona p1 = new Persona("Carlos", "Flores", 141);
-            Persona p2 = new Persona("Kenneth", "Flores", 134);
-            Persona p3 = new Persona("Alberto", "Flores", 12);
-            Persona p4 = new Persona("Ginger", "Flores", 110);
-            Persona p5 = new Persona("MANEUEL", "Flores", 10);
-            Persona p6 = new Persona("SDFAs", "Flores", 1);
-            Persona p7 = new Persona("CarlADFAos", "Flores", 11);
-            Persona p8 = new Persona("DSDSCarlos", "Flores", 13);
-            ArrayList<Persona> a1 = new ArrayList<>();
-            a1.add(p1);
-            a1.add(p2);
-            a1.add(p3);
-            a1.add(p4);
-            ArrayList<Persona> a2 = new ArrayList<>();
-            a2.add(p5);
-            a2.add(p6);
-            a2.add(p7);
-            a2.add(p8);
-            
-            FileInputStream input;
-         
-            try {                
-                input = new FileInputStream("icono.png");                
-                Image image =  new Image(input, 17, 17, false, false);                               
-                LocalDate d = LocalDate.MAX;                
-                Fotografia ft = new Fotografia("Flores", "Ecuador",d , App.galeria.getAlbunes().get(0), "icono.png");
-                Fotografia f1 = new Fotografia("CARLOS", "Ecuador",d , App.galeria.getAlbunes().get(0), "icono.png", a1);
-                App.galeria.getAlbunes().get(0).agregarFoto(f1);
-                App.galeria.getAlbunes().get(0).agregarFoto(ft);
-                App.galeria.getAlbunes().get(0).agregarFoto(ft);
-                App.galeria.getAlbunes().get(0).agregarFoto(ft);
-                App.galeria.getAlbunes().get(0).agregarFoto(ft);
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            }     
-            System.out.println("Aquí"+App.galeria.getAlbunes().get(0).getFotografias().size());
-        }
-       
-        if(App.galeria.getAlbunes().size()>0){
-            Persona p1 = new Persona
-            LocalDate d = LocalDate.MAX;
-            Fotografia ft = new Fotografia("Carlos", "Flores", "Ecuador",d , App.galeria.getAlbunes().get(0));
-            Fotografia f1 = new Fotografia("Carlos", "Flores", "Ecuador",d , App.galeria.getAlbunes().get(0));
-            Fotografia f2 = new Fotografia("Carlos", "Flores", "Ecuador",d , App.galeria.getAlbunes().get(0));
-            Fotografia f3 = new Fotografia("Carlos", "Flores", "Ecuador",d , App.galeria.getAlbunes().get(0));
-            Fotografia f4 = new Fotografia("Carlos", "Flores", "Ecuador",d , App.galeria.getAlbunes().get(0));        
-            App.galeria.getAlbunes().get(0).agregarFoto(ft);
-            App.galeria.getAlbunes().get(0).agregarFoto(f1);
-            App.galeria.getAlbunes().get(0).agregarFoto(f2);
-            App.galeria.getAlbunes().get(0).agregarFoto(f3);
-            App.galeria.getAlbunes().get(0).agregarFoto(f4);
-            System.out.println("Aquí"+App.galeria.getAlbunes().get(0).getFotografias().size());
-        }
-        */
+        Platform.runLater( ()-> {             
+            App.scene.setOnMouseEntered(eh -> {
+                mostrarNombreAl.setText("Ningun Álbum seleccionado");
+                mostrarDescripFoto.setText("");
+                mostrarLugarFoto.setText("");
+                mostrarFechaFoto.setText("");
+                mostrarAlbumFoto.setText("");
+                mostrarPersonasFoto.getChildren().clear();
+                mostrarDescripAlbum.setText("");
+                mostrarNombreAlbum.setText("");
+                detalles.getChildren().set(9, labelVacio2);                
+                mostrarFotos.getChildren().clear();
+                cargarAlbunes();
+                System.out.println("Actualizado");                
+            });                                    
+            cargarAlbunes();                                        
+        });
+                
         menuImport.setOnAction(event -> {
             try {
-                SecondaryController.nuevaVentana();
-                /*
-                FileChooser imgChooser = new FileChooser();
-                imgChooser.setTitle("Seleccionar Imagen");
-                
-                //Filtro para buscar solo imagenes .PNG
-                imgChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("PNG", "*.png")
-                );
-                
-                //Recuperar la imagen seleccionada
-                File imagenFile = imgChooser.showOpenDialog(null);
-                Image img = new Image("file:" + imagenFile.getAbsolutePath());
-                
-                try{
-                agregarDetalles();
-                }catch(IOException e){
-                System.err.println("Error al mostrar Ventana de Información de Imgen");
-                }
-                */
+                SecondaryController.nuevaVentana();               
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -308,34 +144,141 @@ public class PrimaryController implements Initializable {
             Platform.exit();        
         });
         
-        menuAbout.setOnAction(event -> {                  
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);        
-            alert.setTitle("Información del Proyecto");
-            alert.setHeaderText("Creadores");
-            alert.setContentText("Carlos Flores González\nAaron Macias Catagua\nCristhian Rodriguez Villegas\n");
-            alert.showAndWait();            
-        });                                                                    
-    }
-    
-    public void cerrarGaleria()throws IOException{     
-    }
-      
-    
-    
-    /*
-    private void agregarDetalles() throws IOException{
-        App.setRoot("secondary");
+        menuAbout.setOnAction(event -> {                       
+            App.mostrarMensaje(Alert.AlertType.INFORMATION, "Información del Proyecto", "Creadores", "Carlos Flores González\nAaron Macias Catagua\nCristhian Rodriguez Villegas\n");                       
+        });   
         
-        String descripcion = textDescrip.getText();
-        String lugar = textLugar.getText();
-        
-        dtFecha.setOnAction(event -> {
-            LocalDate date = dtFecha.getValue();
-            System.err.println("Selected date: " + date);
-        });                        
     }
-    */
-   
+    
+    public void cargarAlbunes(){
+        Button editarAlbum = new Button("Editar Album");
+        
+        vboxAlbunes.getChildren().clear();
+        
+        for(Album al : App.galeria.getAlbunes()){                        
+            String nombre = al.getNombre();
+            
+            Label nombreAlbum = new Label("    "+nombre);
+            
+            try{
+                FileInputStream input = new FileInputStream("icono.png");
+                Image image = new Image(input, 17, 17, false, false);
+                imageView = new ImageView(image);
+            }catch(Exception e){
+                System.err.println("No se ha encontrado el icono");            
+            }
+            
+                        
+            HBox albumFotos = new HBox();
+            albumFotos.getChildren().add(imageView);
+            albumFotos.getChildren().add(nombreAlbum);
+                                    
+            nombreAlbum.setOnMouseClicked(event -> {                
+                
+                mostrarNombreAlbum.setText(nombre);
+                mostrarDescripAlbum.setText(al.getDescripcion());
+                mostrarNombreAl.setText(nombre);      
+                
+                detalles.getChildren().set(6, labelVacio);         
+                
+                indAlbum = App.galeria.getAlbunes().indexOf(al);
+                
+                mostrarDescripFoto.setText("");
+                mostrarLugarFoto.setText("");
+                mostrarAlbumFoto.setText("");
+                mostrarFechaFoto.setText("");
+                mostrarPersonasFoto.getChildren().clear();
+                mostrarFotos.getChildren().clear();
+                
+                detalles.getChildren().set(9, editarAlbum);
+                
+                editarAlbum.setOnAction(eh -> {
+                    try {
+                        EditAlbumController.iAlbum = indAlbum;
+                        EditAlbumController.nuevaVentana();                        
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                
+                
+                
+                int a = al.getFotografias().size() % 3;
+                System.out.println(al.getFotografias().size());
+                System.out.println(a);
+                
+                if(a > 0){                                                      
+                    for(int i=0; i<a; i++){                        
+                        int c = i*3;
+                        int b = 0;
+                        for(int j=c; j<c+3; j++){
+                            if(j<al.getFotografias().size()){
+                                try{
+                                    Image img = al.getFotografias().get(j).obtenerFoto();
+                                    ImageView foto = new ImageView(img);
+                                    mostrarFotos.add(foto, b, i);
+                                    String descripFoto = al.getFotografias().get(j).getDescripcion();
+                                    String lugarFoto = al.getFotografias().get(j).getLugar();
+                                    String albumFoto = al.getFotografias().get(j).getAlbum().getNombre();
+                                    String fechaFoto = al.getFotografias().get(j).getFecha().toString();
+                                    
+                                    int cntPersonas = al.getFotografias().get(j).getPersonas().size();
+                                    ArrayList<Persona> personas = al.getFotografias().get(j).getPersonas();
+                                    System.out.println("Muestra"+cntPersonas);
+                                                                        
+                                    foto.setOnMouseClicked(ev -> {
+                                        mostrarPersonasFoto.getChildren().clear();
+                                        mostrarDescripFoto.setText(descripFoto);
+                                        mostrarLugarFoto.setText(lugarFoto);
+                                        mostrarAlbumFoto.setText(albumFoto);
+                                        mostrarFechaFoto.setText(fechaFoto); 
+                                                              
+                                        if(personas.size()>0){
+                                            for(Persona p : personas){
+                                                mostrarPersonasFoto.getChildren().add(new Label(p.getNombre()+p.getApellido()));
+                                            }                                            
+                                        }else{
+                                            mostrarPersonasFoto.getChildren().clear();
+                                        }                                                                                
+                                        
+                                        editarFoto = new Button("Editar Foto");
+                                        
+                                        detalles.getChildren().set(6, editarFoto);
+                                        
+                                        editarFoto.setOnAction(eh -> {                                            
+                                            editarFoto(descripFoto);
+                                        });                                                                                
+                                    });
+                                    b++;
+                                }catch(Exception e){
+                                    System.out.println("Error");
+                                }
+                            }                            
+                        }                        
+                    }                                        
+                }else{
+                    System.out.println("No hay fotografias por mostrar");
+                }           
+            });
+            vboxAlbunes.getChildren().add(albumFotos);                                   
+        }                 
+    }
+              
+    @FXML
+    public void editarFoto(String descripcion){                 
+        for(Fotografia ft : App.galeria.getAlbunes().get(indAlbum).getFotografias()){
+            if(descripcion.equals(ft.getDescripcion())){
+                indFotografia = App.galeria.getAlbunes().get(indAlbum).getFotografias().indexOf(ft);
+            }
+        }        
+        
+        ImagenController.iFoto = indFotografia;
+        ImagenController.iAlbum = indAlbum;
+        
+        try {
+            ImagenController.nuevaVentana();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }                
+    }        
 }
-
-

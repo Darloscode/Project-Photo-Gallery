@@ -7,19 +7,19 @@ import java.time.LocalDate;
 public class Album extends Imagen implements Serializable, Comparable<Album>{
     
     private String nombre;
-    private ArrayList<Fotografia> fotografias ;    
+    private ArrayList<Fotografia> fotografias ; 
+    
     public String getNombre(){
         return nombre;
     }
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }           
     public Album(String nombre, String descripcion, LocalDate fecha){
         super(descripcion, fecha);
         this.nombre = nombre;
         this.fotografias = new ArrayList<>();
-    }
-    
-    public void setNombre(String n){
-        this.nombre = n;
-    }
+    } 
     
     public void setFotografias(Fotografia fotografia){
         this.fotografias = fotografias;
