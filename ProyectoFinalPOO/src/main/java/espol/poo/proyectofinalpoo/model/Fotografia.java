@@ -14,8 +14,7 @@ public class Fotografia extends Imagen implements Serializable, Comparable<Fotog
     private String lugar;
     private String imagen;
     private String nombre;
- 
-    
+     
     public Fotografia(String descripcion, String lugar , LocalDate fecha, Album album, String imagen){
       super(descripcion, fecha);
       this.lugar = lugar;
@@ -34,7 +33,7 @@ public class Fotografia extends Imagen implements Serializable, Comparable<Fotog
         Image image = null;
         try{
             FileInputStream input = new FileInputStream(imagen);
-            image = new Image(input, 100, 100, false, false);
+            image = new Image(input,150 , 150, false, false);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -48,65 +47,18 @@ public class Fotografia extends Imagen implements Serializable, Comparable<Fotog
     public String getLugar(){
         return lugar;
     }
-    /*
-    public Fotografia(String lugar ,String fecha ,ArrayList<Persona> personas){
-        super(lugar, fecha, personas);        
-    }
-    
-    
-    public Album getAlbum(){
-      return album;
-    }*/
     
     public String toString(){
         return super.getDescripcion()+"---"+getLugar()+"----"+album.getNombre();
     }     
 
-    public void mostrarLugares(){
-      
+    public void mostrarLugares(){      
     }
 
-    public void mostrarPersonas(){
-      
+    public void mostrarPersonas(){      
     }
 
     public int compareTo(Fotografia ft){      
       return 0;
-    } 
-
-    public void agregarInformacion(){
-      //Se agreagará informacion o modificará segun lo indicado en la ejecucion del programa    
-    }
-
-    public void moverFotografia(Album al){
-      
-    }
-  /*
-    //Muestra la informacion de la fotografía
-    public String toString(){
-      return "Descripcion: "+getDescripcion()+"\nLugar: "+getLugar()+"\nFecha: "+getFecha();
-    }
-  
-    public byte[] abrirImagen ( File archivo){
-        byte[] byteImg= new byte[1024*100];
-        try{
-            FileInputStream entrada = new FileInputStream( archivo);
-            entrada.read(byteImg);
-        } catch (Exception e) {
-            
-        }
-      return byteImg;
-    } 
-    
-    public String guardarImagen(File archivo, byte[]byteImg){
-        String respuesta = null; 
-        try{
-            FileOutputStream salida =new FileOutputStream(archivo);
-            salida.write(byteImg);
-            respuesta = "la imagen ha sido guardada con exito";
-        }catch (Exception e){
-            
-        }
-         return respuesta; 
-    } */
+    }     
 }

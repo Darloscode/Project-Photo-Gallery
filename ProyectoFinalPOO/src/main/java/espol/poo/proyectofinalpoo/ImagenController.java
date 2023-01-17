@@ -98,23 +98,29 @@ public class ImagenController implements Initializable{
                     
                     if(edadPersona !=0 ){
                         Persona p1 = new Persona(nombrePersona, apellidoPersona, edadPersona);                        
-                        if(!App.galeria.getAlbunes().get(iAlbum).getFotografias().get(iFoto).getPersonas().contains(p1)){
+                        if(!App.galeria.getAlbunes().get(iAlbum).getFotografias().get(iFoto).getPersonas().contains(p1)){                            
                             App.galeria.getAlbunes().get(iAlbum).getFotografias().get(iFoto).agregarPersona(p1);
                         }
                     }else{
                         App.mostrarMensaje(Alert.AlertType.WARNING, "Advertencia", "Información de la Fotografía", "Seleccione una edad válida para "+nombrePersona);
                     }
             }
+            
             String nombreSeleccionado = (String) albumes.getValue();             
             if(!nombreAlbum.equals(nombreSeleccionado)){
                 int indice = encontrarAlbum(nombreSeleccionado);
                 App.galeria.getAlbunes().get(indice).agregarFoto(App.galeria.getAlbunes().get(iAlbum).getFotografias().get(iFoto));
                 App.galeria.getAlbunes().get(iAlbum).getFotografias().remove(iFoto);                
-            }                        
+                Node source = (Node) eh.getSource();     //Me devuelve el elemento al que hice click
+                Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento
+                stage.close();
+            }else{
+                Node source = (Node) eh.getSource();     //Me devuelve el elemento al que hice click
+                Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento
+                stage.close();
+            }
             
-            Node source = (Node) eh.getSource();     //Me devuelve el elemento al que hice click
-            Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento
-            stage.close();
+            
         });
     }
     

@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="715.0" minWidth="715.0" prefHeight="400.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.poo.proyectofinalpoo.ImagenController">
+<ScrollPane maxHeight="-Infinity" maxWidth="715.0" minWidth="715.0" prefHeight="445.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.poo.proyectofinalpoo.ImagenController">
    <content>
-      <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="400.0" maxWidth="715.0" minHeight="398.0" minWidth="713.0" prefHeight="398.0" prefWidth="713.0" spacing="5.0">
+      <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="443.0" maxWidth="715.0" minHeight="398.0" minWidth="713.0" prefHeight="443.0" prefWidth="713.0" spacing="5.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="715.0" text="Modificar información" textFill="#656363">
                <font>
@@ -61,27 +61,41 @@
                   <Insets left="120.0" />
                </padding>
             </HBox>
-            <VBox fx:id="mostrarPersonas" prefHeight="45.0" prefWidth="567.0" />
-            <VBox fx:id="agregarPersonas" prefHeight="55.0" prefWidth="577.0" />
-            <Button fx:id="buttonAgregar" mnemonicParsing="false" text="Añadir" onAction="#agregarPersonas" >
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Separator prefWidth="715.0">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </Separator>
-            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="200.0" spacing="30.0">
-               <children>
-                  <Button fx:id="botonGuardar" mnemonicParsing="false" text="Guardar" />
-                  <Button fx:id="botonCancelar" mnemonicParsing="false" text="Cancelar" />
-               </children>
-            </HBox>
+            <ScrollPane prefHeight="232.0" prefWidth="733.0">
+               <content>
+                  <VBox alignment="CENTER" prefHeight="229.0" prefWidth="710.0">
+                     <children>
+                        <VBox fx:id="mostrarPersonas" prefHeight="41.0" prefWidth="711.0">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></VBox>
+                        <VBox fx:id="agregarPersonas" prefHeight="41.0" prefWidth="711.0">
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin></VBox>
+                        <Button fx:id="buttonAgregar" alignment="CENTER" mnemonicParsing="false" onAction="#agregarPersonas" text="Añadir">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Separator prefWidth="715.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </Separator>
+                        <HBox alignment="CENTER" prefHeight="52.0" prefWidth="200.0" spacing="30.0">
+                           <children>
+                              <Button fx:id="botonGuardar" mnemonicParsing="false" text="Guardar" />
+                              <Button fx:id="botonCancelar" mnemonicParsing="false" text="Cancelar" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
          </children>
       </VBox>
    </content>

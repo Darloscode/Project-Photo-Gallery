@@ -32,6 +32,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
@@ -94,6 +95,12 @@ public class PrimaryController implements Initializable {
     private Button editarFoto;    
     @FXML
     private Label labelVacio2;
+    @FXML
+    private ScrollPane scrollPersonas;
+    @FXML
+    private ScrollPane scrollGaleria;
+    @FXML
+    private ScrollPane scrollFiltrar;
     
     private ImageView imageView;
     
@@ -102,7 +109,8 @@ public class PrimaryController implements Initializable {
 
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {                          
+    public void initialize(URL url, ResourceBundle rb) {                 
+        scrollPersonas.setStyle("-fx-background-color:transparent;");
         App.recuperarData();
         
         Platform.runLater( ()-> {             
@@ -235,7 +243,7 @@ public class PrimaryController implements Initializable {
                                                               
                                         if(personas.size()>0){
                                             for(Persona p : personas){
-                                                mostrarPersonasFoto.getChildren().add(new Label(p.getNombre()+p.getApellido()));
+                                                mostrarPersonasFoto.getChildren().add(new Label("- "+p.getNombre()+" "+p.getApellido()));
                                             }                                            
                                         }else{
                                             mostrarPersonasFoto.getChildren().clear();

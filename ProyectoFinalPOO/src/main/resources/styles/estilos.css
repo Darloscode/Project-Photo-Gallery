@@ -1,0 +1,15 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+#titulo{
+   -fx-font-size: 80px;
+   -fx-font-family: "Arial Black";
+   /*-fx-fill: #818181;*/
+   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+   -fx-text-fill: #00008B;
+}
