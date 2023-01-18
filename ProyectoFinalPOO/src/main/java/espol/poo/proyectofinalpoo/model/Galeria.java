@@ -3,10 +3,8 @@ package espol.poo.proyectofinalpoo.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Galeria implements Serializable, Comparable<Galeria>{
-    
-    private ArrayList<Album> albunes = new ArrayList<>(); 
-    //private ArrayList<Fotografia> fotos;
+public class Galeria implements Serializable, Comparable<Galeria>{    
+    private ArrayList<Album> albunes = new ArrayList<>();     
    
     public ArrayList<Album> getAlbunes(){
       return albunes;

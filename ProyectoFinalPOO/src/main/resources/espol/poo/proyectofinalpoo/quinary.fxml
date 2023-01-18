@@ -11,10 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.poo.proyectofinalpoo.SlideshowController">
    <children>
-      <VBox prefHeight="600.0" prefWidth="900.0">
+      <VBox prefHeight="516.0" prefWidth="760.0">
          <children>
             <Label alignment="CENTER" prefWidth="900.0" text="Modo Slideshow">
                <font>
@@ -25,20 +24,17 @@
                </VBox.margin>
             </Label>
             <Separator prefWidth="200.0" />
-            <Pane prefHeight="453.0" prefWidth="900.0">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
+            <Pane prefHeight="376.0" prefWidth="760.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="350.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="visorImagen" fitHeight="361.0" fitWidth="289.0" layoutX="241.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </Pane>
-            <Separator layoutX="10.0" layoutY="78.0" prefWidth="200.0" />
+            <Separator prefWidth="200.0" />
             <HBox alignment="CENTER" prefHeight="57.0" prefWidth="900.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" text="Play" />
-                  <Button mnemonicParsing="false" text="Stop" />
-                  <ComboBox prefHeight="25.0" prefWidth="98.0" promptText="Velocidad" />
+                  <Button fx:id="botonPlay" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Play" />
+                  <ComboBox fx:id="botonVelocidad" prefHeight="25.0" prefWidth="95.0" promptText="Velocidad" />
+                  <Button fx:id="botonStop" mnemonicParsing="false" prefHeight="25.0" prefWidth="51.0" text="Stop" />
                </children>
             </HBox>
          </children>

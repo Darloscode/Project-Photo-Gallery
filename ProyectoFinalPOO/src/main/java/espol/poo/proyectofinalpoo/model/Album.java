@@ -37,10 +37,6 @@ public class Album extends Imagen implements Serializable, Comparable<Album>{
     public void agregarPersona( Persona p ){
       super.agregarPersona(p);
       System.out.println("Se añadió una persona al album");
-    }
-    
-    public void activarSlideshow(){
-      //Se activará modo Slideshow
     }    
     
     public String toString(){
@@ -50,12 +46,4 @@ public class Album extends Imagen implements Serializable, Comparable<Album>{
     public int compareTo(Album al){      
       return 0;
     }     
-
-    @Override
-    public void mostrarLugares() {        
-    }
-
-    @Override
-    public void mostrarPersonas() {        
-    }
 }

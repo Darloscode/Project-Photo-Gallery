@@ -67,17 +67,17 @@
                   <Font name="Cambria" size="23.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="653.0" spacing="155.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="544.0" spacing="40.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="63.0" text="Nombre" />
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="59.0" text="Apellido" />
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="32.0" text="Edad" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="111.0" text="Nombre" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="115.0" text="Apellido" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="63.0" text="Edad" />
                </children>
                <VBox.margin>
                   <Insets />
                </VBox.margin>
                <padding>
-                  <Insets left="120.0" />
+                  <Insets left="80.0" />
                </padding>
             </HBox>
             <ScrollPane prefHeight="132.0" prefWidth="712.0">

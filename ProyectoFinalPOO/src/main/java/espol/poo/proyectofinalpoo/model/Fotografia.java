@@ -29,11 +29,11 @@ public class Fotografia extends Imagen implements Serializable, Comparable<Fotog
       this.imagen = imagen;
     }
     
-    public Image obtenerFoto(){
+    public Image obtenerFoto(double x, double y){
         Image image = null;
         try{
             FileInputStream input = new FileInputStream(imagen);
-            image = new Image(input,150 , 150, false, false);
+            image = new Image(input,x , y, false, false);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -48,15 +48,13 @@ public class Fotografia extends Imagen implements Serializable, Comparable<Fotog
         return lugar;
     }
     
+    public String getImagen(){
+        return imagen;
+    }
+    
     public String toString(){
         return super.getDescripcion()+"---"+getLugar()+"----"+album.getNombre();
     }     
-
-    public void mostrarLugares(){      
-    }
-
-    public void mostrarPersonas(){      
-    }
 
     public int compareTo(Fotografia ft){      
       return 0;

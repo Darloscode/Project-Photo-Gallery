@@ -102,6 +102,8 @@ public class PrimaryController implements Initializable {
     @FXML
     private ScrollPane scrollFiltrar;
     
+    private Button modoSlideshow;
+    
     private ImageView imageView;
     
     private int indFotografia;
@@ -109,21 +111,23 @@ public class PrimaryController implements Initializable {
 
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {                 
+    public void initialize(URL url, ResourceBundle rb) {        
         scrollPersonas.setStyle("-fx-background-color:transparent;");
+        
         App.recuperarData();
         
         Platform.runLater( ()-> {             
             App.scene.setOnMouseEntered(eh -> {
-                mostrarNombreAl.setText("Ningun Álbum seleccionado");
+                mostrarNombreAl.setText("Ningun Álbum Seleccionado");
                 mostrarDescripFoto.setText("");
                 mostrarLugarFoto.setText("");
                 mostrarFechaFoto.setText("");
                 mostrarAlbumFoto.setText("");
                 mostrarPersonasFoto.getChildren().clear();
+                detalles.getChildren().remove(modoSlideshow);
                 mostrarDescripAlbum.setText("");
                 mostrarNombreAlbum.setText("");
-                detalles.getChildren().set(9, labelVacio2);                
+                detalles.getChildren().set(9, labelVacio2);                  
                 mostrarFotos.getChildren().clear();
                 cargarAlbunes();
                 System.out.println("Actualizado");                
@@ -183,6 +187,8 @@ public class PrimaryController implements Initializable {
                                     
             nombreAlbum.setOnMouseClicked(event -> {                
                 
+                detalles.getChildren().remove(modoSlideshow);
+                
                 mostrarNombreAlbum.setText(nombre);
                 mostrarDescripAlbum.setText(al.getDescripcion());
                 mostrarNombreAl.setText(nombre);      
@@ -209,6 +215,19 @@ public class PrimaryController implements Initializable {
                     }
                 });
                 
+                if(al.getFotografias().size()>0){
+                    modoSlideshow = new Button("Activar Modo Slideshow");
+                    detalles.getChildren().add(modoSlideshow);
+                    modoSlideshow.setOnAction(eh -> {
+                        try {
+                            SlideshowController.iAlbum = indAlbum;
+                            SlideshowController.nuevaVentana();
+                            
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+                }
                 
                 
                 int a = al.getFotografias().size() % 3;
@@ -222,7 +241,7 @@ public class PrimaryController implements Initializable {
                         for(int j=c; j<c+3; j++){
                             if(j<al.getFotografias().size()){
                                 try{
-                                    Image img = al.getFotografias().get(j).obtenerFoto();
+                                    Image img = al.getFotografias().get(j).obtenerFoto(150, 200);
                                     ImageView foto = new ImageView(img);
                                     mostrarFotos.add(foto, b, i);
                                     String descripFoto = al.getFotografias().get(j).getDescripcion();

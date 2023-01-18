@@ -3,8 +3,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public abstract class Imagen implements Serializable {
-        
+public abstract class Imagen implements Serializable {        
     private String descripcion;    
     private LocalDate fecha;
     private ArrayList<Persona> personas = new ArrayList<>();
@@ -37,10 +36,5 @@ public abstract class Imagen implements Serializable {
 
     public void agregarPersona(Persona p){
         personas.add(p);
-    }
-
-    public abstract void mostrarLugares();
-
-    public abstract void mostrarPersonas();
-    
+    }    
 }
