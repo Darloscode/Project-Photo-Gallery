@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.poo.proyectofinalpoo.PrimaryController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="625.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.poo.proyectofinalpoo.PrimaryController">
    <children>
       <MenuBar>
         <menus>
@@ -44,7 +44,7 @@
          <items>
             <ScrollPane maxWidth="180.0" minWidth="100.0" prefHeight="-1.0" prefWidth="130.0">
                <content>
-                  <VBox fillWidth="false" prefHeight="569.0" prefWidth="179.0">
+                  <VBox fillWidth="false" prefHeight="581.0" prefWidth="180.0">
                      <children>
                         <Label id="titulo" alignment="CENTER" style="&#10;" text="Galeria" textAlignment="CENTER" textFill="#9f9f9f">
                            <font>
@@ -77,7 +77,7 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
-                        <VBox alignment="CENTER" fillWidth="false" prefHeight="283.0" prefWidth="179.0">
+                        <VBox fx:id="vboxPersonas" alignment="CENTER" fillWidth="false" prefHeight="301.0" prefWidth="179.0">
                            <children>
                               <Separator prefWidth="200.0" />
                               <Label text="Personas">
@@ -87,8 +87,8 @@
                               </Label>
                               <HBox alignment="CENTER" fillHeight="false" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Button fx:id="botonBuscarPersona" mnemonicParsing="false" text="Buscar" />
-                                    <TextField fx:id="buscarPersona" prefHeight="25.0" prefWidth="101.0">
+                                    <Button fx:id="botonBuscarPersona" mnemonicParsing="false" onAction="#filtrarPersonas" text="Buscar" />
+                                    <TextField fx:id="txtpersona" prefHeight="25.0" prefWidth="101.0">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
@@ -103,8 +103,8 @@
                               </Label>
                               <HBox alignment="CENTER" fillHeight="false" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Button fx:id="botonBuscarLugar" mnemonicParsing="false" text="Buscar" />
-                                    <TextField fx:id="buscarLugar" prefHeight="25.0" prefWidth="101.0">
+                                    <Button fx:id="lugares" mnemonicParsing="false" onAction="#filtrarLugares" text="Buscar" />
+                                    <TextField fx:id="txtLugar" prefHeight="25.0" prefWidth="101.0">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
@@ -112,15 +112,11 @@
                                  </children>
                               </HBox>
                               <Separator prefWidth="200.0" />
-                              <Label text="Fechas">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </Label>
+                              <Label text="Fechas" />
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Label text="Inicio" />
-                                    <DatePicker fx:id="buscarFechaInicio" prefHeight="25.0" prefWidth="108.0">
+                                    <DatePicker fx:id="fechaInicial" prefHeight="25.0" prefWidth="108.0">
                                        <HBox.margin>
                                           <Insets left="15.0" />
                                        </HBox.margin>
@@ -136,7 +132,7 @@
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Label text="Fin" />
-                                    <DatePicker fx:id="buscarFechaFin" editable="false" prefHeight="25.0" prefWidth="110.0">
+                                    <DatePicker fx:id="fechaFinal" editable="false" prefHeight="25.0" prefWidth="110.0">
                                        <HBox.margin>
                                           <Insets left="27.0" />
                                        </HBox.margin>
@@ -146,11 +142,12 @@
                                     <Insets left="15.0" />
                                  </padding>
                               </HBox>
-                              <Button fx:id="botonBuscarFecha" mnemonicParsing="false" text="Buscar">
-                                 <VBox.margin>
-                                    <Insets bottom="9.0" />
-                                 </VBox.margin>
-                              </Button>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#filtrarFechas" prefHeight="23.0" prefWidth="64.0" text="Buscar " />
+                                    <Button fx:id="Cancelar" mnemonicParsing="false" onAction="#cancelarBusqueda" text="Cancelar" />
+                                 </children>
+                              </HBox>
                               <Separator prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets />
@@ -205,7 +202,7 @@
             </ScrollPane>
             <ScrollPane layoutX="10.0" layoutY="10.0" maxWidth="200.0" minWidth="120.0" prefHeight="-1.0" prefWidth="-1.0">
                <content>
-                  <VBox fx:id="detalles" alignment="TOP_CENTER" fillWidth="false" prefHeight="571.0" prefWidth="199.0" spacing="7.0">
+                  <VBox fx:id="detalles" alignment="TOP_CENTER" fillWidth="false" prefHeight="571.0" prefWidth="199.0">
                      <children>
                         <Label alignment="CENTER" style="&#10;" text="Detalles" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
                            <font>
@@ -308,11 +305,7 @@
                               <Insets left="8.0" />
                            </VBox.margin>
                         </GridPane>
-                        <Label fx:id="labelVacio2">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Label>
+                        <Label fx:id="labelVacio2" />
                      </children>
                   </VBox>
                </content>

@@ -64,22 +64,7 @@ public class App extends Application {
         }
     }
     
-    public static void recuperarData(){
-        LocalDate f1 = LocalDate.of(2023,3,3);
-        LocalDate f2 = LocalDate.of(2023,3,3);
-        LocalDate f3 = LocalDate.of(2023,3,3);
-        LocalDate f4 = LocalDate.of(2023,3,3);
-        LocalDate f5 = LocalDate.of(2023,3,3);
-        LocalDate f6 = LocalDate.of(2023,3,3);
-        LocalDate f7 = LocalDate.of(2023,3,3);
-        LocalDate f8 = LocalDate.of(2023,3,3);
-        
-        Album al1 = new Album("Creadores", "Aquí se encuentran las fotos de los creadores", f1);
-        //Album al1 = new Album("Familiar", "Lugares visitados en familia", f2);
-        //Album al1 = new Album("Mis Recuerdos", "Bellos momentos", f3);
-        //Album al1 = new Album("Escuela", "Momentos escolares", f4);
-        //Album al1 = new Album("", "", f5);
-        //Album al1 = new Album("", "", f6);        
+    public static void recuperarData(){                
         try{
             ObjectInputStream oit= new ObjectInputStream(new FileInputStream("data.ser"));                                    
             galeria = (Galeria) oit.readObject();
@@ -103,3 +88,5 @@ public class App extends Application {
     }
 
 }
+
+

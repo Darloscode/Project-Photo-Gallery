@@ -33,6 +33,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
@@ -101,6 +102,25 @@ public class PrimaryController implements Initializable {
     private ScrollPane scrollGaleria;
     @FXML
     private ScrollPane scrollFiltrar;
+    @FXML 
+    VBox vboxPersonas;
+    @FXML 
+    TextField txtpersona;
+    @FXML
+    Button Persona;
+    @FXML 
+    private VBox vboxLugares;
+    @FXML
+    private TextField txtLugar;
+    @FXML 
+    DatePicker fechaInicial;
+    @FXML 
+    DatePicker fechaFinal;
+    @FXML
+    private Button lugares = new Button();
+        
+    private VBox filtros = new VBox();
+    private Separator sp = new Separator();
     
     private Button modoSlideshow;
     
@@ -118,19 +138,7 @@ public class PrimaryController implements Initializable {
         
         Platform.runLater( ()-> {             
             App.scene.setOnMouseEntered(eh -> {
-                mostrarNombreAl.setText("Ningun Álbum Seleccionado");
-                mostrarDescripFoto.setText("");
-                mostrarLugarFoto.setText("");
-                mostrarFechaFoto.setText("");
-                mostrarAlbumFoto.setText("");
-                mostrarPersonasFoto.getChildren().clear();
-                detalles.getChildren().remove(modoSlideshow);
-                mostrarDescripAlbum.setText("");
-                mostrarNombreAlbum.setText("");
-                detalles.getChildren().set(9, labelVacio2);                  
-                mostrarFotos.getChildren().clear();
-                cargarAlbunes();
-                System.out.println("Actualizado");                
+               limpiarContenedores();      
             });                                    
             cargarAlbunes();                                        
         });
@@ -162,7 +170,7 @@ public class PrimaryController implements Initializable {
         
     }
     
-    public void cargarAlbunes(){
+    private void cargarAlbunes(){
         Button editarAlbum = new Button("Editar Album");
         
         vboxAlbunes.getChildren().clear();
@@ -307,5 +315,250 @@ public class PrimaryController implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }                
+    }    
+    
+    private void limpiarContenedores(){
+        mostrarNombreAl.setText("Ningun Álbum Seleccionado");
+        mostrarDescripFoto.setText("");
+        mostrarLugarFoto.setText("");
+        mostrarFechaFoto.setText("");
+        mostrarAlbumFoto.setText("");
+        mostrarPersonasFoto.getChildren().clear();
+        detalles.getChildren().remove(modoSlideshow);
+        mostrarDescripAlbum.setText("");
+        mostrarNombreAlbum.setText("");
+        detalles.getChildren().set(9, labelVacio2);                  
+        mostrarFotos.getChildren().clear();
+        verFotos.getChildren().remove(filtros);
+        verFotos.getChildren().remove(sp);
+        cargarAlbunes();
+        System.out.println("Actualizado");          
+    }
+    
+    @FXML
+    private void filtrarPersonas(){
+        limpiarContenedores();        
+        sp.setPrefWidth(504);
+        verFotos.getChildren().add(sp);        
+        verFotos.getChildren().add(filtros);                             
+          
+        for(Album al : App.galeria.getAlbunes()){                        
+               
+            int a = al.getFotografias().size() % 3;            
+            Label nombreAlbum= new Label();
+            GridPane gpane= new GridPane();
+                
+            ArrayList<Fotografia> fotos = al.getFotografias();
+            
+            for(Fotografia foto: fotos){
+                ArrayList<Persona> personas=  foto.getPersonas();                
+                    for(Persona persona: personas){              
+                        if(persona.getNombre().contains(txtpersona.getText())){
+                            nombreAlbum.setText(al.getNombre());
+                            Image img = foto.obtenerFoto(150,150);
+                            ImageView fot = new ImageView(img);
+                        if(a > 0){                                                      
+                            for(int i=0; i<a; i++){                        
+                                int c = i*3;
+                                int b = 0;
+                                for(int j=c; j<c+3; j++){
+                                    if(j<al.getFotografias().size()){
+                                        try{                                                                          
+                                            String descripFoto = al.getFotografias().get(j).getDescripcion();
+                                            String lugarFoto = al.getFotografias().get(j).getLugar();
+                                            String albumFoto = al.getFotografias().get(j).getAlbum().getNombre();
+                                            String fechaFoto = al.getFotografias().get(j).getFecha().toString();
+                                    
+                                            int cntPersonas = al.getFotografias().get(j).getPersonas().size();
+                                            
+                                            gpane.add(fot, b, i);
+                                               
+                                            fot.setOnMouseClicked(ev -> {
+                                                     
+                                                mostrarPersonasFoto.getChildren().clear();
+                                                mostrarDescripFoto.setText(descripFoto);
+                                                mostrarLugarFoto.setText(lugarFoto);
+                                                mostrarAlbumFoto.setText(albumFoto);
+                                                mostrarFechaFoto.setText(fechaFoto);
+                                                mostrarPersonasFoto.getChildren().add(new Label("- "+persona.getNombre()+" "+persona.getApellido()));
+
+                                            });   
+                                      
+                                            editarFoto = new Button("Editar Foto");
+                                        
+                                            detalles.getChildren().set(6, editarFoto);                                        
+                                            b++;
+                                        }catch(Exception e){
+                                            System.out.println("Error");
+                                        }
+                                    }                            
+                                }                                           
+                            }                                        
+                        }else{
+                            System.out.println("No hay fotografias por mostrar");
+                        }                                             
+                    }
+                }                   
+            }                            
+            filtros.getChildren().add(nombreAlbum);
+            filtros.getChildren().add(gpane);                                                
+            }
+    }
+    
+    @FXML
+    private void filtrarLugares(){
+        limpiarContenedores();        
+        sp.setPrefWidth(504);
+        verFotos.getChildren().add(sp);        
+        verFotos.getChildren().add(filtros);  
+        
+        for(Album al : App.galeria.getAlbunes()){                        
+               
+            int a = al.getFotografias().size() % 3;            
+            Label nombreAlbum= new Label();//crea una etiqueta del nombre del album por cada albun que recorre el for
+            GridPane gpane= new GridPane();// crea una regilla de fotos por cada album
+                
+            ArrayList<Fotografia> fotos = al.getFotografias();
+            for(Fotografia foto: fotos){
+                String Lugares=  foto.getLugar();   // obtiene el lugar de cada fotografia                                 
+                    if(Lugares.contains(txtLugar.getText())){
+                          
+                            nombreAlbum.setText(al.getNombre());
+                            Image img = foto.obtenerFoto(150,150);
+                            ImageView fot = new ImageView(img);                                                   
+                        if(a > 0){                                                      
+                            for(int i=0; i<a; i++){                        
+                                int c = i*3;
+                                int b = 0;
+                                for(int j=c; j<c+3; j++){
+                                    if(j<al.getFotografias().size()){
+                                        try{
+                                            String descripFoto = al.getFotografias().get(j).getDescripcion();
+                                            String lugarFoto = al.getFotografias().get(j).getLugar();
+                                            String albumFoto = al.getFotografias().get(j).getAlbum().getNombre();
+                                            String fechaFoto = al.getFotografias().get(j).getFecha().toString();
+                                            
+                                            ArrayList<Persona> personas=  foto.getPersonas();
+                                        
+                                            gpane.add(fot, b, i); // Añade cada foto al la rejilla de fotos
+                                               
+                                            fot.setOnMouseClicked(ev -> {
+                                                     
+                                                mostrarPersonasFoto.getChildren().clear();
+                                                mostrarDescripFoto.setText(descripFoto);
+                                                mostrarLugarFoto.setText(lugarFoto);
+                                                mostrarAlbumFoto.setText(albumFoto);
+                                                mostrarFechaFoto.setText(fechaFoto);
+                                                     
+                                                for(Persona p : personas){
+                                                    mostrarPersonasFoto.getChildren().add(new Label("- "+p.getNombre()+" "+p.getApellido()));                                                         
+                                                }                                            
+                                            });   
+                                      
+                                            editarFoto = new Button("Editar Foto");
+                                        
+                                            detalles.getChildren().set(6, editarFoto);                                                                                                                  
+                                            b++;
+                                        }catch(Exception e){
+                                            System.out.println("Error");
+                                    }
+                                }                            
+                            }                                           
+                        }                                        
+                    }else{
+                        System.out.println("No hay fotografias por mostrar");
+                    }                   
+                }
+            }
+            filtros.getChildren().add(nombreAlbum);
+            filtros.getChildren().add(gpane);
+        }                
+    }
+    
+    @FXML
+    private void filtrarFechas(){                
+        limpiarContenedores();        
+        sp.setPrefWidth(504);
+        verFotos.getChildren().add(sp);        
+        verFotos.getChildren().add(filtros);  
+        
+        LocalDate fechauno = fechaInicial.getValue();
+        LocalDate fechados= fechaFinal.getValue();                                   
+        
+        for(Album al : App.galeria.getAlbunes()){                                       
+            int a = al.getFotografias().size() % 3;                
+            Label nombreAlbum= new Label();//crea una etiqueta del nombre del album por cada albun que recorre el for
+            GridPane gpane= new GridPane();// crea una regilla de fotos por cada album
+                
+            ArrayList<Fotografia> fotos = al.getFotografias();
+            for(Fotografia foto: fotos){              
+                if(foto.getFecha().isAfter(fechaInicial.getValue())&& foto.getFecha().isBefore(fechaFinal.getValue()) ){                          
+                    nombreAlbum.setText(al.getNombre());
+                    Image img = foto.obtenerFoto(150,150);
+                    ImageView fot = new ImageView(img);
+                        if(a > 0){                                                      
+                            for(int i=0; i<a; i++){                        
+                                int c = i*3;
+                                int b = 0;
+                                for(int j=c; j<c+3; j++){
+                                    if(j<al.getFotografias().size()){
+                                        try{                                                                          
+                                            String descripFoto = al.getFotografias().get(j).getDescripcion();
+                                            String lugarFoto = al.getFotografias().get(j).getLugar();
+                                            String albumFoto = al.getFotografias().get(j).getAlbum().getNombre();
+                                            String fechaFoto = al.getFotografias().get(j).getFecha().toString();
+                                            
+                                            int cntPersonas = al.getFotografias().get(j).getPersonas().size();
+                                            ArrayList<Persona> personas = al.getFotografias().get(j).getPersonas();                                                                         
+                                            
+                                            gpane.add(fot, b, i);
+                                               
+                                            fot.setOnMouseClicked(ev -> {
+                                                     
+                                                mostrarPersonasFoto.getChildren().clear();
+                                                mostrarDescripFoto.setText(descripFoto);
+                                                mostrarLugarFoto.setText(lugarFoto);
+                                                mostrarAlbumFoto.setText(albumFoto);
+                                                mostrarFechaFoto.setText(fechaFoto);
+                                                
+                                                    if(personas.size()>0){
+                                                        for(Persona p : personas){
+                                                            mostrarPersonasFoto.getChildren().add(new Label("- "+p.getNombre()+" "+p.getApellido()));
+                                                        }                                            
+                                                    }else{
+                                                        mostrarPersonasFoto.getChildren().clear();
+                                                    }  
+
+                                            });   
+                                      
+                                            editarFoto = new Button("Editar Foto");
+                                        
+                                            detalles.getChildren().set(6, editarFoto);                                                                                                                  
+                                            b++;
+                                        }catch(Exception e){
+                                            System.out.println("Error");
+                                    }
+                                }                            
+                            }                                           
+                        }                                        
+                    }else{
+                        System.out.println("No hay fotografias por mostrar");
+                    }                                             
+                }else 
+                    System.out.println("No cumple");                                     
+            }
+            filtros.getChildren().add(nombreAlbum);
+            filtros.getChildren().add(gpane);                 
+        }          
+    }
+    
+    @FXML
+    private void cancelarBusqueda(){
+        filtros.getChildren().clear();  
+        txtpersona.clear();
+        txtLugar.clear();
+        fechaInicial.setValue(null);
+        fechaFinal.setValue(null);
+        cargarAlbunes();       
     }        
 }
