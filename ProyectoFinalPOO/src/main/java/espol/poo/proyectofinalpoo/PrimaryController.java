@@ -181,8 +181,8 @@ public class PrimaryController implements Initializable {
             Label nombreAlbum = new Label("    "+nombre);
             
             try{
-                FileInputStream input = new FileInputStream("icono.png");
-                Image image = new Image(input, 17, 17, false, false);
+                FileInputStream input = new FileInputStream("icono-carpeta.png");
+                Image image = new Image(input, 20, 20, false, false);
                 imageView = new ImageView(image);
             }catch(Exception e){
                 System.err.println("No se ha encontrado el icono");            
@@ -237,10 +237,7 @@ public class PrimaryController implements Initializable {
                     });
                 }
                 
-                
-                int a = al.getFotografias().size() % 3;
-                System.out.println(al.getFotografias().size());
-                System.out.println(a);
+                int a = al.getFotografias().size() % 3;                
                 
                 if(a > 0){                                                      
                     for(int i=0; i<a; i++){                        
@@ -258,8 +255,7 @@ public class PrimaryController implements Initializable {
                                     String fechaFoto = al.getFotografias().get(j).getFecha().toString();
                                     
                                     int cntPersonas = al.getFotografias().get(j).getPersonas().size();
-                                    ArrayList<Persona> personas = al.getFotografias().get(j).getPersonas();
-                                    System.out.println("Muestra"+cntPersonas);
+                                    ArrayList<Persona> personas = al.getFotografias().get(j).getPersonas();                                    
                                                                         
                                     foto.setOnMouseClicked(ev -> {
                                         mostrarPersonasFoto.getChildren().clear();
@@ -286,7 +282,7 @@ public class PrimaryController implements Initializable {
                                     });
                                     b++;
                                 }catch(Exception e){
-                                    System.out.println("Error");
+                                    System.out.println("No se ha cargado");
                                 }
                             }                            
                         }                        
@@ -353,55 +349,60 @@ public class PrimaryController implements Initializable {
             for(Fotografia foto: fotos){
                 ArrayList<Persona> personas=  foto.getPersonas();                
                     for(Persona persona: personas){              
-                        if(persona.getNombre().contains(txtpersona.getText())){
+                        if(persona.getNombre().equals(txtpersona.getText())){
                             nombreAlbum.setText(al.getNombre());
                             Image img = foto.obtenerFoto(150,150);
                             ImageView fot = new ImageView(img);
-                        if(a > 0){                                                      
-                            for(int i=0; i<a; i++){                        
-                                int c = i*3;
-                                int b = 0;
-                                for(int j=c; j<c+3; j++){
-                                    if(j<al.getFotografias().size()){
-                                        try{                                                                          
-                                            String descripFoto = al.getFotografias().get(j).getDescripcion();
-                                            String lugarFoto = al.getFotografias().get(j).getLugar();
-                                            String albumFoto = al.getFotografias().get(j).getAlbum().getNombre();
-                                            String fechaFoto = al.getFotografias().get(j).getFecha().toString();
-                                    
-                                            int cntPersonas = al.getFotografias().get(j).getPersonas().size();
+                            if(a > 0){                                                      
+                                for(int i=0; i<a; i++){                        
+                                    int c = i*3;
+                                    int b = 0;
+                                    for(int j=c; j<c+3; j++){
+                                        if(j<al.getFotografias().size()){
+                                            try{                                                                          
+                                                String descripFoto = foto.getDescripcion();
+                                                String lugarFoto = foto.getLugar();
+                                                String albumFoto = foto.getAlbum().getNombre();
+                                                String fechaFoto = foto.getFecha().toString();                                                                                                                                                                                
                                             
-                                            gpane.add(fot, b, i);
+                                                gpane.add(fot, b, i);
                                                
-                                            fot.setOnMouseClicked(ev -> {
+                                                fot.setOnMouseClicked(ev -> {
                                                      
-                                                mostrarPersonasFoto.getChildren().clear();
-                                                mostrarDescripFoto.setText(descripFoto);
-                                                mostrarLugarFoto.setText(lugarFoto);
-                                                mostrarAlbumFoto.setText(albumFoto);
-                                                mostrarFechaFoto.setText(fechaFoto);
-                                                mostrarPersonasFoto.getChildren().add(new Label("- "+persona.getNombre()+" "+persona.getApellido()));
+                                                    mostrarPersonasFoto.getChildren().clear();
+                                                    mostrarDescripFoto.setText(descripFoto);
+                                                    mostrarLugarFoto.setText(lugarFoto);
+                                                    mostrarAlbumFoto.setText(albumFoto);
+                                                    mostrarFechaFoto.setText(fechaFoto);
+                                                    
+                                                    if(personas.size()>0){
+                                                        for(Persona p : personas){
+                                                            mostrarPersonasFoto.getChildren().add(new Label("- "+p.getNombre()+" "+p.getApellido()));
+                                                        }                                            
+                                                    }else{
+                                                        mostrarPersonasFoto.getChildren().clear();
+                                                    }  
 
-                                            });   
+                                                });     
                                       
-                                            editarFoto = new Button("Editar Foto");
+                                                editarFoto = new Button("Editar Foto");
                                         
-                                            detalles.getChildren().set(6, editarFoto);                                        
-                                            b++;
-                                        }catch(Exception e){
-                                            System.out.println("Error");
-                                        }
-                                    }                            
-                                }                                           
-                            }                                        
-                        }else{
-                            System.out.println("No hay fotografias por mostrar");
-                        }                                             
-                    }
-                }                   
-            }                            
-            filtros.getChildren().add(nombreAlbum);
-            filtros.getChildren().add(gpane);                                                
+                                                detalles.getChildren().set(6, editarFoto);                                        
+                                                b++;
+                                            }catch(Exception e){
+                                                System.out.println("No se ha cargado");
+                                            }
+                                        }                            
+                                    }                                           
+                                }                                        
+                            }else{
+                                System.out.println("No hay fotografias por mostrar");
+                            }                                             
+                        }
+                    }                   
+                }                            
+                filtros.getChildren().add(nombreAlbum);
+                filtros.getChildren().add(gpane);                                                
             }
     }
     
@@ -417,12 +418,10 @@ public class PrimaryController implements Initializable {
             int a = al.getFotografias().size() % 3;            
             Label nombreAlbum= new Label();//crea una etiqueta del nombre del album por cada albun que recorre el for
             GridPane gpane= new GridPane();// crea una regilla de fotos por cada album
-                
-            ArrayList<Fotografia> fotos = al.getFotografias();
-            for(Fotografia foto: fotos){
-                String Lugares=  foto.getLugar();   // obtiene el lugar de cada fotografia                                 
-                    if(Lugares.contains(txtLugar.getText())){
-                          
+                                        
+            for(Fotografia foto: al.getFotografias()){
+                String lugares =  foto.getLugar();   // obtiene el lugar de cada fotografia                                 
+                    if(lugares.equals(txtLugar.getText())){                          
                             nombreAlbum.setText(al.getNombre());
                             Image img = foto.obtenerFoto(150,150);
                             ImageView fot = new ImageView(img);                                                   
@@ -433,26 +432,29 @@ public class PrimaryController implements Initializable {
                                 for(int j=c; j<c+3; j++){
                                     if(j<al.getFotografias().size()){
                                         try{
-                                            String descripFoto = al.getFotografias().get(j).getDescripcion();
-                                            String lugarFoto = al.getFotografias().get(j).getLugar();
-                                            String albumFoto = al.getFotografias().get(j).getAlbum().getNombre();
-                                            String fechaFoto = al.getFotografias().get(j).getFecha().toString();
+                                            String descripFoto = foto.getDescripcion();
+                                            String lugarFoto = foto.getLugar();
+                                            String albumFoto = foto.getAlbum().getNombre();
+                                            String fechaFoto = foto.getFecha().toString();
                                             
-                                            ArrayList<Persona> personas=  foto.getPersonas();
+                                            ArrayList<Persona> personas =  foto.getPersonas();
                                         
                                             gpane.add(fot, b, i); // Añade cada foto al la rejilla de fotos
                                                
-                                            fot.setOnMouseClicked(ev -> {
-                                                     
+                                            fot.setOnMouseClicked(ev -> {                                                     
                                                 mostrarPersonasFoto.getChildren().clear();
                                                 mostrarDescripFoto.setText(descripFoto);
                                                 mostrarLugarFoto.setText(lugarFoto);
                                                 mostrarAlbumFoto.setText(albumFoto);
                                                 mostrarFechaFoto.setText(fechaFoto);
                                                      
-                                                for(Persona p : personas){
-                                                    mostrarPersonasFoto.getChildren().add(new Label("- "+p.getNombre()+" "+p.getApellido()));                                                         
-                                                }                                            
+                                                if(personas.size()>0){
+                                                    for(Persona p : personas){
+                                                        mostrarPersonasFoto.getChildren().add(new Label("- "+p.getNombre()+" "+p.getApellido()));
+                                                    }                                            
+                                                }else{
+                                                    mostrarPersonasFoto.getChildren().clear();
+                                                }                                             
                                             });   
                                       
                                             editarFoto = new Button("Editar Foto");
@@ -460,7 +462,7 @@ public class PrimaryController implements Initializable {
                                             detalles.getChildren().set(6, editarFoto);                                                                                                                  
                                             b++;
                                         }catch(Exception e){
-                                            System.out.println("Error");
+                                            System.out.println("No se ha cargado");
                                     }
                                 }                            
                             }                                           
@@ -502,14 +504,13 @@ public class PrimaryController implements Initializable {
                                 int b = 0;
                                 for(int j=c; j<c+3; j++){
                                     if(j<al.getFotografias().size()){
-                                        try{                                                                          
-                                            String descripFoto = al.getFotografias().get(j).getDescripcion();
-                                            String lugarFoto = al.getFotografias().get(j).getLugar();
-                                            String albumFoto = al.getFotografias().get(j).getAlbum().getNombre();
-                                            String fechaFoto = al.getFotografias().get(j).getFecha().toString();
+                                        try{             
+                                            String descripFoto = foto.getDescripcion();
+                                            String lugarFoto = foto.getLugar();
+                                            String albumFoto = foto.getAlbum().getNombre();
+                                            String fechaFoto = foto.getFecha().toString();
                                             
-                                            int cntPersonas = al.getFotografias().get(j).getPersonas().size();
-                                            ArrayList<Persona> personas = al.getFotografias().get(j).getPersonas();                                                                         
+                                            ArrayList<Persona> personas =  foto.getPersonas();                                                                                                                                    
                                             
                                             gpane.add(fot, b, i);
                                                
@@ -536,7 +537,7 @@ public class PrimaryController implements Initializable {
                                             detalles.getChildren().set(6, editarFoto);                                                                                                                  
                                             b++;
                                         }catch(Exception e){
-                                            System.out.println("Error");
+                                            System.out.println("No se ha cargado");
                                     }
                                 }                            
                             }                                           
@@ -545,7 +546,7 @@ public class PrimaryController implements Initializable {
                         System.out.println("No hay fotografias por mostrar");
                     }                                             
                 }else 
-                    System.out.println("No cumple");                                     
+                    System.out.println("No hay coincidencia");                                     
             }
             filtros.getChildren().add(nombreAlbum);
             filtros.getChildren().add(gpane);                 

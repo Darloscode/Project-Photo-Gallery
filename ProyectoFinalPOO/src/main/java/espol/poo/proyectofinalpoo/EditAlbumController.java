@@ -39,8 +39,8 @@ public class EditAlbumController implements Initializable{
         cargarDatos();
         
         cancerlarAlbum.setOnAction(event -> {
-            Node source = (Node) event.getSource();     //Me devuelve el elemento al que hice click
-            Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento
+            Node source = (Node) event.getSource();   
+            Stage stage = (Stage) source.getScene().getWindow();    
             stage.close();            
         });
         
@@ -52,8 +52,8 @@ public class EditAlbumController implements Initializable{
                 App.galeria.getAlbunes().get(iAlbum).setNombre(nuevoNombre);
                 App.galeria.getAlbunes().get(iAlbum).setDescripcion(nuevaDescripcion);
                 App.mostrarMensaje(Alert.AlertType.INFORMATION, "Editar Álbum", "Editar", "Se ha actualizado el album");
-                Node source = (Node) eh.getSource();     //Me devuelve el elemento al que hice click
-            Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento
+                Node source = (Node) eh.getSource();    
+            Stage stage = (Stage) source.getScene().getWindow();
             stage.close(); 
             }else{
                 App.mostrarMensaje(Alert.AlertType.WARNING, "Editar Álbum", "Editar", "Debe llenar todos los campos");
@@ -62,8 +62,8 @@ public class EditAlbumController implements Initializable{
         
         eliminarAlbum.setOnAction(e -> {
             App.galeria.getAlbunes().remove(iAlbum);            
-            Node source = (Node) e.getSource();     //Me devuelve el elemento al que hice click
-            Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento
+            Node source = (Node) e.getSource();    
+            Stage stage = (Stage) source.getScene().getWindow();  
             stage.close();
             App.mostrarMensaje(Alert.AlertType.CONFIRMATION, "Eliminar", "Eliminar Album", "Se ha eliminado el mensaje correctamente");
         });                

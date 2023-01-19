@@ -50,8 +50,8 @@ public class ImagenController implements Initializable{
         cargarDatos();
         
         botonCancelar.setOnAction(eh -> {
-            Node source = (Node) eh.getSource();     //Me devuelve el elemento al que hice click
-            Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento
+            Node source = (Node) eh.getSource();     
+            Stage stage = (Stage) source.getScene().getWindow();
             stage.close();
         });
         
@@ -111,12 +111,12 @@ public class ImagenController implements Initializable{
                 int indice = encontrarAlbum(nombreSeleccionado);
                 App.galeria.getAlbunes().get(indice).agregarFoto(App.galeria.getAlbunes().get(iAlbum).getFotografias().get(iFoto));
                 App.galeria.getAlbunes().get(iAlbum).getFotografias().remove(iFoto);                
-                Node source = (Node) eh.getSource();     //Me devuelve el elemento al que hice click
-                Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento
+                Node source = (Node) eh.getSource();     
+                Stage stage = (Stage) source.getScene().getWindow();
                 stage.close();
             }else{
-                Node source = (Node) eh.getSource();     //Me devuelve el elemento al que hice click
-                Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento
+                Node source = (Node) eh.getSource();    
+                Stage stage = (Stage) source.getScene().getWindow();
                 stage.close();
             }
             

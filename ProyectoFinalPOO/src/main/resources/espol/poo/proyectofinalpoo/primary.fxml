@@ -202,7 +202,7 @@
             </ScrollPane>
             <ScrollPane layoutX="10.0" layoutY="10.0" maxWidth="200.0" minWidth="120.0" prefHeight="-1.0" prefWidth="-1.0">
                <content>
-                  <VBox fx:id="detalles" alignment="TOP_CENTER" fillWidth="false" prefHeight="571.0" prefWidth="199.0">
+                  <VBox fx:id="detalles" alignment="TOP_CENTER" fillWidth="false" prefHeight="571.0" prefWidth="199.0" spacing="7.0">
                      <children>
                         <Label alignment="CENTER" style="&#10;" text="Detalles" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
                            <font>

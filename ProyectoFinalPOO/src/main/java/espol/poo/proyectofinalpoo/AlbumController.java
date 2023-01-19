@@ -41,8 +41,8 @@ public class AlbumController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb){        
         cerrarCrearAlbum.setOnAction(event -> {
-            Node source = (Node) event.getSource();     //Me devuelve el elemento al que hice click
-            Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento
+            Node source = (Node) event.getSource();  
+            Stage stage = (Stage) source.getScene().getWindow();  
             stage.close();            
         });
         
@@ -54,8 +54,8 @@ public class AlbumController implements Initializable {
         
             if((!nombreAlbum.equals("")) & (!descripcionAlbum.equals("")) & (date != null)){                       
                 App.galeria.agregarAlbum(new Album(nombreAlbum, descripcionAlbum, date));                
-                Node source = (Node) event.getSource();     //Me devuelve el elemento al que hice click
-                Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento                
+                Node source = (Node) event.getSource();  
+                Stage stage = (Stage) source.getScene().getWindow();  
                 stage.close();                
                 App.mostrarMensaje(Alert.AlertType.INFORMATION, "Advertencia", "Información del Album", "Ha creado el álbum con éxito");
             }else{

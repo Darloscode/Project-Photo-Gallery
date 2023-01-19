@@ -67,12 +67,7 @@ public class App extends Application {
     public static void recuperarData(){                
         try{
             ObjectInputStream oit= new ObjectInputStream(new FileInputStream("data.ser"));                                    
-            galeria = (Galeria) oit.readObject();
-            
-            for(Album s : App.galeria.getAlbunes()){
-                System.out.println(s.toString());
-            }
-            
+            galeria = (Galeria) oit.readObject();                                 
             oit.close();
         }catch(Exception e){
             System.out.println("No existe información para recuperar");

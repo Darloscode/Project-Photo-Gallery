@@ -66,8 +66,8 @@ public class SecondaryController implements Initializable{
         cargarDatos();                       
         
         cancelarButton.setOnAction(event -> {
-            Node source = (Node) event.getSource();     //Me devuelve el elemento al que hice click
-            Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento
+            Node source = (Node) event.getSource();   
+            Stage stage = (Stage) source.getScene().getWindow();   
             stage.close();
         });      
     }
@@ -82,9 +82,9 @@ public class SecondaryController implements Initializable{
         scene = new Scene(loadFXML("secondary"));
         stage.setScene(scene);
         stage.setTitle("Abrir nueva Fotografía");
-        stage.show();
+        stage.show();        
     }            
-           
+          
     private void cargarDatos(){        
         for(Album al : App.galeria.getAlbunes()){
             String nombre = al.getNombre();
@@ -130,7 +130,9 @@ public class SecondaryController implements Initializable{
                 
             //Filtro para buscar solo imagenes .PNG
             imgChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("PNG", "*.png")
+                new FileChooser.ExtensionFilter("PNG", "*.png"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("JPEG", "*.jpeg")
             );
                 
             //Recuperar la imagen seleccionada
@@ -156,8 +158,7 @@ public class SecondaryController implements Initializable{
         
         if((!nombreAlbum.equals("-SELECCIONE-")) & (!txtDescripcion.equals("")) & (!txtLugar.equals("")) & (fecha != null) & (direccionImagen != null)){
             
-            int indice = encontrarAlbum(nombreAlbum);     
-            System.out.println(indice);
+            int indice = encontrarAlbum(nombreAlbum);                 
             
             for(Node v : vboxPersonas.getChildren()){
                 HBox personas = (HBox) v;
@@ -185,16 +186,14 @@ public class SecondaryController implements Initializable{
         
             if(listaPersonas.size()>0){
                 ft = new Fotografia(descripcion, lugar, fecha, App.galeria.getAlbunes().get(indice), direccionImagen, listaPersonas);                
-                System.out.println("TODO BIEN CON PESONAS");
             }else{
-                ft = new Fotografia(descripcion, lugar, fecha, App.galeria.getAlbunes().get(indice), direccionImagen);
-                System.out.println("TODO BIEN SIN PERSONAS");
+                ft = new Fotografia(descripcion, lugar, fecha, App.galeria.getAlbunes().get(indice), direccionImagen);                
             }
                         
             App.galeria.getAlbunes().get(indice).agregarFoto(ft);
             System.out.println("HAS AGREGADO CON EXITO");                
-            Node source = (Node) event.getSource();     //Me devuelve el elemento al que hice click
-            Stage stage = (Stage) source.getScene().getWindow();    //Me devuelve la ventana donde se encuentra el elemento
+            Node source = (Node) event.getSource();    
+            Stage stage = (Stage) source.getScene().getWindow();   
             stage.close();
             App.mostrarMensaje(Alert.AlertType.INFORMATION, "Información", "Información de la Fotografía", "Se ha subido su imagen correctamente");
         }else{
